@@ -1,4 +1,6 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -19,6 +21,16 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "AT SOPT ANDROID"
+rootProject.name = "Atsopt"
 include(":app")
- 
+include(":core:buildconfig")
+include(":core:common")
+include(":core:data")
+include(":core:designsystem")
+include(":core:domain")
+include(":core:model")
+include(":core:navigation")
+include(":core:network")
+include(":core:ui")
+include(":feature:main")
+include(":feature:home")
