@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import org.sopt.at.designsystem.theme.AtsoptTheme
-import org.sopt.at.home.navigation.homeNavGraph
+import org.sopt.at.login.navigation.loginNavGraph
 
 @Composable
 internal fun MainScreen(
@@ -28,7 +28,7 @@ internal fun MainScreen(
                 enterTransition = { EnterTransition.None },
                 exitTransition = { ExitTransition.None }
             ) {
-                homeNavGraph(
+                loginNavGraph(
                     padding = innerPadding
                 )
             }
