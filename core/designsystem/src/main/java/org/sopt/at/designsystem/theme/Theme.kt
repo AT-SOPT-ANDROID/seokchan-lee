@@ -15,15 +15,57 @@ import androidx.compose.ui.graphics.Color
 
 @Stable
 class AtsoptColors(
-    white: Color
+    white: Color,
+    black: Color,
+    placeholder: Color,
+    textFieldBackground: Color,
+    textFieldBorder: Color,
+    buttonText: Color,
+    buttonBackground: Color,
+    lightGray: Color,
+    description: Color,
 ) {
     var white by mutableStateOf(white)
+        private set
+    var black by mutableStateOf(black)
+        private set
+    var placeholder by mutableStateOf(placeholder)
+        private set
+    var textFieldBackground by mutableStateOf(textFieldBackground)
+        private set
+    var textFieldBorder by mutableStateOf(textFieldBorder)
+        private set
+    var buttonText by mutableStateOf(buttonText)
+        private set
+    var buttonBackground by mutableStateOf(buttonBackground)
+        private set
+    var lightGray by mutableStateOf(lightGray)
+        private set
+    var description by mutableStateOf(description)
         private set
 }
 
 fun AtsoptColor(
-    white: Color = White
-) = AtsoptColors(white)
+    white: Color = White,
+    black: Color = Black,
+    placeholder: Color = Placeholder,
+    textFieldBackground: Color = TextFieldBackground,
+    textFieldBorder: Color = TextFieldBorder,
+    buttonText: Color = ButtonText,
+    buttonBackground: Color = ButtonBackground,
+    lightGray: Color = LightGray,
+    description: Color = Description,
+) = AtsoptColors(
+    white,
+    black,
+    placeholder,
+    textFieldBackground,
+    textFieldBorder,
+    buttonText,
+    buttonBackground,
+    lightGray,
+    description,
+)
 
 private val LocalAtsoptColors =
     staticCompositionLocalOf<AtsoptColors> { error("provide none color") }
