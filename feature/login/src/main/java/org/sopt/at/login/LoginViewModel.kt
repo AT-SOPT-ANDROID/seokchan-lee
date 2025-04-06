@@ -40,7 +40,7 @@ class LoginViewModel @Inject constructor(
                     if (signInSuccess) {
                         postSideEffect(LoginSideEffect.NavigateHome)
                     } else {
-                        //TODO. 로그인 실패
+                        postSideEffect(LoginSideEffect.SignInFailure)
                     }
                 }
         }

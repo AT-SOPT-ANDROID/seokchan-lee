@@ -1,6 +1,5 @@
 package org.sopt.at.login
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,18 +14,21 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import org.sopt.at.designsystem.component.button.AtsoptBasicTextButton
 import org.sopt.at.designsystem.component.textfield.AtsoptBasicTextField
+import org.sopt.at.designsystem.snackbar.AtsoptBasicSnackBar
 import org.sopt.at.designsystem.theme.AtsoptTheme
 import org.sopt.at.ui.extension.clickableWithoutRipple
 import org.sopt.at.ui.lifecycle.LaunchedEffectWithLifecycle
@@ -39,12 +41,18 @@ fun LoginRoute(
     viewModel: LoginViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    var showSnackBar by remember { mutableStateOf(false) }
 
     LaunchedEffectWithLifecycle {
         viewModel.sideEffect.collectLatest { sideEffect ->
             when (sideEffect) {
                 LoginSideEffect.NavigateSignUp -> navigateToSignUp()
                 LoginSideEffect.NavigateHome -> navigateToHome()
+                LoginSideEffect.SignInFailure -> {
+                    showSnackBar = true
+                    delay(2200)
+                    showSnackBar = false
+                }
             }
         }
     }
@@ -52,17 +60,24 @@ fun LoginRoute(
     LoginScreen(
         modifier = modifier,
         uiState = uiState,
+        showSnackBar = showSnackBar,
         updateUserID = viewModel::updateUserID,
         updateUserPassword = viewModel::updateUserPassword,
         navigateToSignUp = viewModel::navigateToSignUp,
         navigateToHome = viewModel::navigateToHome,
     )
+    if (showSnackBar) {
+        AtsoptBasicSnackBar(
+            message = "회원 정보 없음"
+        )
+    }
 }
 
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
     uiState: LoginState,
+    showSnackBar: Boolean,
     updateUserID: (String) -> Unit,
     updateUserPassword: (String) -> Unit,
     navigateToSignUp: () -> Unit,

@@ -11,4 +11,5 @@ data class LoginState(
 sealed interface LoginSideEffect : SideEffect {
     data object NavigateSignUp : LoginSideEffect
     data object NavigateHome : LoginSideEffect
+    data object SignInFailure : LoginSideEffect
 }
