@@ -31,7 +31,7 @@ import org.sopt.at.ui.lifecycle.LaunchedEffectWithLifecycle
 @Composable
 fun SignUpRoute(
     modifier: Modifier = Modifier,
-    navigateToBack: () -> Unit,
+    navigateToSignIn: () -> Unit,
     viewModel: SignUpViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -39,7 +39,7 @@ fun SignUpRoute(
     LaunchedEffectWithLifecycle {
         viewModel.sideEffect.collectLatest { sideEffect ->
             when (sideEffect) {
-                SignUpSideEffect.NavigateToBack -> navigateToBack()
+                SignUpSideEffect.NavigateToBack -> navigateToSignIn()
             }
         }
     }
@@ -50,7 +50,7 @@ fun SignUpRoute(
         inputPassword = uiState.inputPassword,
         updateInputId = viewModel::updateInputId,
         updateInputPassword = viewModel::updateInputPassword,
-        navigateToBack = viewModel::navigateToBack
+        navigateToSignIn = viewModel::navigateToBack
     )
 }
 
@@ -61,15 +61,18 @@ fun SignUpScreen(
     inputPassword: String,
     updateInputId: (String) -> Unit,
     updateInputPassword: (String) -> Unit,
-    navigateToBack: () -> Unit,
+    navigateToSignIn: () -> Unit,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState(initialPage = 0, pageCount = { 2 })
     val focusManager = LocalFocusManager.current
 
-    BackHandler(enabled = pagerState.currentPage != 0) {
-        coroutineScope.launch {
-            pagerState.animateScrollToPage(pagerState.currentPage - 1)
+    BackHandler {
+        when (pagerState.currentPage) {
+            0 -> navigateToSignIn()
+            1 -> coroutineScope.launch {
+                pagerState.animateScrollToPage(pagerState.currentPage - 1)
+            }
         }
     }
 
@@ -92,7 +95,7 @@ fun SignUpScreen(
                             }
                         }
 
-                        else -> navigateToBack()
+                        else -> navigateToSignIn()
                     }
                 },
             painter = painterResource(org.sopt.at.designsystem.R.drawable.ic_back_arrow),
@@ -147,7 +150,7 @@ fun SignUpScreen(
                         }
                     }
 
-                    else -> navigateToBack()
+                    else -> navigateToSignIn()
                 }
             },
             textStyle = AtsoptTheme.typography.bodyMedium15,

@@ -37,7 +37,7 @@ internal fun MainScreen(
                 )
                 signUpNavGraph(
                     padding = innerPadding,
-                    navigateToBack = navigator::navigateBack
+                    navigateToSignIn = navigator::navigateToSignIn
                 )
                 homeNavGraph(
                     padding = innerPadding

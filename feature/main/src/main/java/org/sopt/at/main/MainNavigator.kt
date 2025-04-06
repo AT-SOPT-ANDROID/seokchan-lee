@@ -25,8 +25,20 @@ internal class MainNavigator(
         navController.popBackStack()
     }
 
+    fun navigateToSignIn() {
+        navController.navigate(Login) {
+            popUpTo(navController.graph.id) {
+                inclusive = true
+            }
+        }
+    }
+
     fun navigateToSignUp() {
-        navController.navigate(SignUp)
+        navController.navigate(SignUp) {
+            popUpTo(navController.graph.id) {
+                inclusive = true
+            }
+        }
     }
 
     fun navigateToHome() {
