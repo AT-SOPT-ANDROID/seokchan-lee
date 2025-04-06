@@ -7,8 +7,10 @@ import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import org.sopt.at.home.navigation.Home
 import org.sopt.at.login.navigation.Login
 import org.sopt.at.navigation.Route
+import org.sopt.at.signup.navigation.SignUp
 
 internal class MainNavigator(
     val navController: NavHostController
@@ -18,6 +20,18 @@ internal class MainNavigator(
             .currentBackStackEntryAsState().value?.destination
 
     val startDestination = Login
+
+    fun navigateToSignUp() {
+        navController.navigate(SignUp)
+    }
+
+    fun navigateToHome() {
+        navController.navigate(Home) {
+            popUpTo(navController.graph.id) {
+                inclusive = true
+            }
+        }
+    }
 
     /*
     fun navigateUpIfNotHome() {

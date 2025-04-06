@@ -9,7 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import org.sopt.at.designsystem.theme.AtsoptTheme
+import org.sopt.at.home.navigation.homeNavGraph
 import org.sopt.at.login.navigation.loginNavGraph
+import org.sopt.at.signup.navigation.signUpNavGraph
 
 @Composable
 internal fun MainScreen(
@@ -21,7 +23,7 @@ internal fun MainScreen(
         content = { innerPadding ->
             NavHost(
                 modifier = modifier
-                    .background(color = AtsoptTheme.colors.white)
+                    .background(color = AtsoptTheme.colors.black)
                     .fillMaxSize(),
                 navController = navigator.navController,
                 startDestination = navigator.startDestination,
@@ -29,6 +31,14 @@ internal fun MainScreen(
                 exitTransition = { ExitTransition.None }
             ) {
                 loginNavGraph(
+                    padding = innerPadding,
+                    navigateToSignUp = navigator::navigateToSignUp,
+                    navigateToHome = navigator::navigateToHome
+                )
+                signUpNavGraph(
+                    padding = innerPadding
+                )
+                homeNavGraph(
                     padding = innerPadding
                 )
             }
