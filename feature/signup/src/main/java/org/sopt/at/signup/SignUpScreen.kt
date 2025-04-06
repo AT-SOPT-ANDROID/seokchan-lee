@@ -14,6 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -64,6 +65,7 @@ fun SignUpScreen(
 ) {
     val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState(initialPage = 0, pageCount = { 2 })
+    val focusManager = LocalFocusManager.current
 
     BackHandler(enabled = pagerState.currentPage != 0) {
         coroutineScope.launch {
@@ -74,7 +76,10 @@ fun SignUpScreen(
     Column(
         modifier
             .fillMaxSize()
-            .padding(horizontal = 10.dp),
+            .padding(horizontal = 10.dp)
+            .clickableWithoutRipple {
+                focusManager.clearFocus(force = true)
+            },
     ) {
         Image(
             modifier = Modifier

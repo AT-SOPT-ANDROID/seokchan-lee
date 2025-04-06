@@ -15,8 +15,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -54,8 +57,6 @@ fun LoginRoute(
         navigateToSignUp = viewModel::navigateToSignUp,
         navigateToHome = viewModel::navigateToHome,
     )
-
-    Log.d("asdasdasd", uiState.id)
 }
 
 @Composable
@@ -67,10 +68,15 @@ fun LoginScreen(
     navigateToSignUp: () -> Unit,
     navigateToHome: () -> Unit,
 ) {
+    val focusManager = LocalFocusManager.current
+
     Column(
         modifier
             .fillMaxSize()
             .padding(horizontal = 10.dp)
+            .clickableWithoutRipple {
+                focusManager.clearFocus(force = true)
+            }
     ) {
         Image(
             modifier = Modifier.padding(top = 50.dp, bottom = 50.dp),
