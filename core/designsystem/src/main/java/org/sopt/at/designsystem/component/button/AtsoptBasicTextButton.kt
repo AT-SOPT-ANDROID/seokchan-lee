@@ -36,14 +36,14 @@ fun AtsoptBasicTextButton(
     minHeight: Dp = 52.dp,
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .heightIn(minHeight)
             .fillMaxWidth()
             .clip(shape = shape)
             .background(if (isActive) AtsoptTheme.colors.buttonSuccess else backgroundColor)
             .border(
                 width = 1.dp,
-                color = borderLineColor,
+                color = if (isActive) Color.Unspecified else borderLineColor,
                 shape = shape,
             )
             .clickableWithoutRipple(

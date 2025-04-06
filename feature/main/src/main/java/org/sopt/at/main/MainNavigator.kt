@@ -21,6 +21,10 @@ internal class MainNavigator(
 
     val startDestination = Login
 
+    fun navigateBack() {
+        navController.popBackStack()
+    }
+
     fun navigateToSignUp() {
         navController.navigate(SignUp)
     }

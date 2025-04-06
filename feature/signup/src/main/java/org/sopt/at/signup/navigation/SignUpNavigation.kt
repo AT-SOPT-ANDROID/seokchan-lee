@@ -15,10 +15,13 @@ fun NavController.navigateSignUp() {
 
 fun NavGraphBuilder.signUpNavGraph(
     padding: PaddingValues,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToBack: () -> Unit,
 ) {
     composable<SignUp> {
-        SignUpRoute()
+        SignUpRoute(
+            navigateToBack = navigateToBack,
+        )
     }
 }
 
