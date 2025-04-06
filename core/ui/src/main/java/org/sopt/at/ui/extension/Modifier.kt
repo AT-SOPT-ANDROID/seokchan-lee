@@ -2,6 +2,7 @@ package org.sopt.at.ui.extension
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.ripple.rememberRipple
@@ -44,4 +45,17 @@ fun Modifier.customClickable(
             interactionSource = remember { MutableInteractionSource() }
         )
     }
+}
+
+fun Modifier.clickableWithoutRipple(
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource = MutableInteractionSource(),
+    onClick: () -> Unit,
+): Modifier {
+    return this.clickable(
+        enabled = enabled,
+        interactionSource = interactionSource,
+        indication = null,
+        onClick = onClick,
+    )
 }
