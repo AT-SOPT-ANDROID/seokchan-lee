@@ -45,7 +45,7 @@ import org.sopt.at.ui.extension.clickableWithoutRipple
 fun AtsoptBasicTextField(
     modifier: Modifier = Modifier,
     isPassword: Boolean = false,
-    shape: Shape = RoundedCornerShape(4.dp),
+    shape: Shape = RoundedCornerShape(8.dp),
     placeholder: String = "",
     labelText: String = "",
     value: String = "",

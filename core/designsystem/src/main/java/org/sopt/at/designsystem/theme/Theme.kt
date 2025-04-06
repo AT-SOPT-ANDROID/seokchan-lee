@@ -21,6 +21,7 @@ class AtsoptColors(
     textFieldBackground: Color,
     textFieldBorder: Color,
     buttonText: Color,
+    buttonSuccess: Color,
     buttonBackground: Color,
     lightGray: Color,
     description: Color,
@@ -37,6 +38,8 @@ class AtsoptColors(
         private set
     var buttonText by mutableStateOf(buttonText)
         private set
+    var buttonSuccess by mutableStateOf(buttonSuccess)
+        private set
     var buttonBackground by mutableStateOf(buttonBackground)
         private set
     var lightGray by mutableStateOf(lightGray)
@@ -52,6 +55,7 @@ fun AtsoptColor(
     textFieldBackground: Color = TextFieldBackground,
     textFieldBorder: Color = TextFieldBorder,
     buttonText: Color = ButtonText,
+    buttonSuccess: Color = ButtonSuccess,
     buttonBackground: Color = ButtonBackground,
     lightGray: Color = LightGray,
     description: Color = Description,
@@ -62,6 +66,7 @@ fun AtsoptColor(
     textFieldBackground,
     textFieldBorder,
     buttonText,
+    buttonSuccess,
     buttonBackground,
     lightGray,
     description,
