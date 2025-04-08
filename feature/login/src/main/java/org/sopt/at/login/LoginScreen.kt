@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -17,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -37,6 +39,7 @@ import org.sopt.at.designsystem.component.button.AtsoptBasicTextButton
 import org.sopt.at.designsystem.component.textfield.AtsoptBasicTextField
 import org.sopt.at.designsystem.snackbar.AtsoptBasicSnackBar
 import org.sopt.at.designsystem.theme.AtsoptTheme
+import org.sopt.at.ui.effect.shakeAnimation
 import org.sopt.at.ui.extension.clickableWithoutRipple
 import org.sopt.at.ui.lifecycle.LaunchedEffectWithLifecycle
 
@@ -49,6 +52,7 @@ fun LoginRoute(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var showSnackBar by remember { mutableStateOf(false) }
+    val shakeOffset = remember { mutableFloatStateOf(0f) }
 
     LaunchedEffectWithLifecycle {
         viewModel.sideEffect.collectLatest { sideEffect ->
@@ -57,7 +61,8 @@ fun LoginRoute(
                 LoginSideEffect.NavigateHome -> navigateToHome()
                 LoginSideEffect.SignInFailure -> {
                     showSnackBar = true
-                    delay(2200)
+                    shakeAnimation(shakeOffset)
+                    delay(1700)
                     showSnackBar = false
                 }
             }
@@ -67,7 +72,7 @@ fun LoginRoute(
     LoginScreen(
         modifier = modifier,
         uiState = uiState,
-        showSnackBar = showSnackBar,
+        shakeOffset = shakeOffset.floatValue,
         updateUserID = viewModel::updateUserID,
         updateUserPassword = viewModel::updateUserPassword,
         navigateToSignUp = viewModel::navigateToSignUp,
@@ -84,7 +89,7 @@ fun LoginRoute(
 fun LoginScreen(
     modifier: Modifier = Modifier,
     uiState: LoginState,
-    showSnackBar: Boolean,
+    shakeOffset: Float,
     updateUserID: (String) -> Unit,
     updateUserPassword: (String) -> Unit,
     navigateToSignUp: () -> Unit,
@@ -96,6 +101,7 @@ fun LoginScreen(
         modifier
             .fillMaxSize()
             .imePadding()
+            .offset(x = shakeOffset.dp)
             .padding(horizontal = 10.dp)
             .clickableWithoutRipple {
                 focusManager.clearFocus(force = true)
