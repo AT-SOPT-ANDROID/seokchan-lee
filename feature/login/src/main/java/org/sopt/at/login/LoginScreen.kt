@@ -9,7 +9,10 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
@@ -19,8 +22,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -88,6 +95,7 @@ fun LoginScreen(
     Column(
         modifier
             .fillMaxSize()
+            .imePadding()
             .padding(horizontal = 10.dp)
             .clickableWithoutRipple {
                 focusManager.clearFocus(force = true)
@@ -106,6 +114,7 @@ fun LoginScreen(
         )
         AtsoptSignUpBody(
             modifier = Modifier.padding(bottom = 35.dp),
+            focusManager = focusManager,
             userId = uiState.id,
             userPassword = uiState.password,
             updateUserID = updateUserID,
@@ -121,6 +130,7 @@ fun LoginScreen(
 @Composable
 private fun AtsoptSignUpBody(
     modifier: Modifier = Modifier,
+    focusManager: FocusManager,
     userId: String,
     userPassword: String,
     updateUserID: (String) -> Unit,
@@ -139,6 +149,13 @@ private fun AtsoptSignUpBody(
             onValueChange = {
                 updateUserID(it)
             },
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Next,
+                keyboardType = KeyboardType.Text
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = { focusManager.moveFocus(FocusDirection.Down) }
+            )
         )
         AtsoptBasicTextField(
             modifier = Modifier
@@ -150,6 +167,13 @@ private fun AtsoptSignUpBody(
             onValueChange = {
                 updateUserPassword(it)
             },
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Done,
+                keyboardType = KeyboardType.Text
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = { focusManager.clearFocus(force = true) }
+            )
         )
         AtsoptBasicTextButton(
             text = "로그인하기",
