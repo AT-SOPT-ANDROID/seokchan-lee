@@ -7,6 +7,6 @@ import javax.inject.Inject
 class GetSignInUseCase @Inject constructor(
     private val userRepository: UserRepository
 ) {
-    suspend operator fun invoke(userInfo: UserInfo): Result<Boolean> =
+    operator fun invoke(userInfo: UserInfo): Result<Boolean> =
         userRepository.getUser(userInfo)
 }

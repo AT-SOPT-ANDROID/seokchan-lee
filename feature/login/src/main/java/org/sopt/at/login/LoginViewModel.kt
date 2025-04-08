@@ -3,6 +3,7 @@ package org.sopt.at.login
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import org.sopt.at.domain.usecase.GetAutoSignInUseCase
 import org.sopt.at.domain.usecase.GetSignInUseCase
 import org.sopt.at.model.UserInfo
 import org.sopt.at.ui.base.BaseViewModel
@@ -11,8 +12,23 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val getSignInUseCase: GetSignInUseCase,
+    private val getAutoSignInUseCase: GetAutoSignInUseCase,
 ) :
     BaseViewModel<LoginState, LoginSideEffect>(LoginState()) {
+    init {
+        checkAutoSignIn()
+    }
+
+    private fun checkAutoSignIn() {
+        viewModelScope.launch {
+            getAutoSignInUseCase.invoke().onSuccess {
+                it.collect { autoSignIn ->
+                    if (autoSignIn) postSideEffect(LoginSideEffect.NavigateHome)
+                }
+            }
+        }
+    }
+
     fun updateUserID(id: String) {
         intent {
             copy(
