@@ -1,4 +1,4 @@
-package org.sopt.at.data.local.di
+package org.sopt.at.database.di
 
 import android.content.Context
 import dagger.Module
@@ -6,8 +6,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import org.sopt.at.data.local.datasource.LocalUserDataSource
-import org.sopt.at.data.local.datasourceImpl.LocalUserDataSourceImpl
+import org.sopt.at.database.source.LocalUserDataSource
+import org.sopt.at.database.database.LocalUserDataSourceImpl
 import javax.inject.Singleton
 
 @Module

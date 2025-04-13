@@ -14,7 +14,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import org.sopt.at.datastore.datastore.AutoSignInPreferencesDataSource
+import org.sopt.at.datastore.source.AutoSignInPreferencesDataSource
 import org.sopt.at.datastore.datastore.DefaultAutoSignInPreferencesDataSource
 import javax.inject.Named
 import javax.inject.Singleton

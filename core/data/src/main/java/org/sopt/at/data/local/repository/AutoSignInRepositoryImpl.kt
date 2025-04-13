@@ -1,7 +1,7 @@
 package org.sopt.at.data.local.repository
 
 import kotlinx.coroutines.flow.Flow
-import org.sopt.at.datastore.datastore.AutoSignInPreferencesDataSource
+import org.sopt.at.datastore.source.AutoSignInPreferencesDataSource
 import org.sopt.at.domain.repository.AutoSignInRepository
 import javax.inject.Inject
 

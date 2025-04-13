@@ -1,4 +1,4 @@
-package org.sopt.at.datastore.datastore
+package org.sopt.at.datastore.source
 
 import kotlinx.coroutines.flow.Flow
 

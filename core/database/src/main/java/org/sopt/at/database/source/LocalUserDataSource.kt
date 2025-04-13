@@ -1,4 +1,4 @@
-package org.sopt.at.data.local.datasource
+package org.sopt.at.database.source
 
 import org.sopt.at.model.UserInfo
 

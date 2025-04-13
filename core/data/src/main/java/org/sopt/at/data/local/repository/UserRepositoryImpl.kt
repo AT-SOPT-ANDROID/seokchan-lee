@@ -1,6 +1,6 @@
 package org.sopt.at.data.local.repository
 
-import org.sopt.at.data.local.datasource.LocalUserDataSource
+import org.sopt.at.database.source.LocalUserDataSource
 import org.sopt.at.domain.repository.UserRepository
 import org.sopt.at.model.UserInfo
 import javax.inject.Inject

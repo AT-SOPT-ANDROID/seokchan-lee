@@ -1,14 +1,15 @@
-package org.sopt.at.data.local.datasourceImpl
+package org.sopt.at.database.database
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.content.ContentValues
-import org.sopt.at.data.local.datasource.LocalUserDataSource
+import org.sopt.at.database.source.LocalUserDataSource
 import org.sopt.at.model.UserInfo
 import javax.inject.Inject
 
-class LocalUserDataSourceImpl @Inject constructor(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION),
+class LocalUserDataSourceImpl @Inject constructor(context: Context) :
+    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION),
     LocalUserDataSource {
 
     override fun insertUser(user: UserInfo): Boolean {
@@ -31,7 +32,7 @@ class LocalUserDataSourceImpl @Inject constructor(context: Context) : SQLiteOpen
             null,
             null
         )
-        
+
         return cursor.moveToFirst()
     }
 
