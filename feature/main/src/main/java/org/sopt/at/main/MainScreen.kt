@@ -10,6 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import org.sopt.at.designsystem.theme.AtsoptTheme
 import org.sopt.at.home.navigation.homeNavGraph
+import org.sopt.at.login.navigation.loginNavGraph
+import org.sopt.at.signup.navigation.signUpNavGraph
 
 @Composable
 internal fun MainScreen(
@@ -20,16 +22,26 @@ internal fun MainScreen(
         modifier = modifier,
         content = { innerPadding ->
             NavHost(
-                modifier = modifier
-                    .background(color = AtsoptTheme.colors.white)
-                    .fillMaxSize(),
                 navController = navigator.navController,
                 startDestination = navigator.startDestination,
                 enterTransition = { EnterTransition.None },
-                exitTransition = { ExitTransition.None }
+                exitTransition = { ExitTransition.None },
+                modifier = modifier
+                    .background(color = AtsoptTheme.colors.black)
+                    .fillMaxSize()
             ) {
+                loginNavGraph(
+                    padding = innerPadding,
+                    navigateToSignUp = navigator::navigateToSignUp,
+                    navigateToHome = navigator::navigateToHome
+                )
+                signUpNavGraph(
+                    padding = innerPadding,
+                    navigateToSignIn = navigator::navigateToSignIn
+                )
                 homeNavGraph(
-                    padding = innerPadding
+                    padding = innerPadding,
+                    navigateToSignIn = navigator::navigateToSignIn
                 )
             }
         }

@@ -15,10 +15,13 @@ fun NavController.navigateHome() {
 
 fun NavGraphBuilder.homeNavGraph(
     padding: PaddingValues,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToSignIn: () -> Unit
 ) {
     composable<Home> {
-        HomeRoute()
+        HomeRoute(
+            navigateToSignIn = navigateToSignIn
+        )
     }
 }
 

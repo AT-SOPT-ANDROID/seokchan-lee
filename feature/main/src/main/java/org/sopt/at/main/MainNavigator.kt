@@ -8,7 +8,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import org.sopt.at.home.navigation.Home
+import org.sopt.at.login.navigation.Login
 import org.sopt.at.navigation.Route
+import org.sopt.at.signup.navigation.SignUp
 
 internal class MainNavigator(
     val navController: NavHostController
@@ -17,7 +19,35 @@ internal class MainNavigator(
         @Composable get() = navController
             .currentBackStackEntryAsState().value?.destination
 
-    val startDestination = Home
+    val startDestination = Login
+
+    fun navigateBack() {
+        navController.popBackStack()
+    }
+
+    fun navigateToSignIn() {
+        navController.navigate(Login) {
+            popUpTo(navController.graph.id) {
+                inclusive = true
+            }
+        }
+    }
+
+    fun navigateToSignUp() {
+        navController.navigate(SignUp) {
+            popUpTo(navController.graph.id) {
+                inclusive = true
+            }
+        }
+    }
+
+    fun navigateToHome() {
+        navController.navigate(Home) {
+            popUpTo(navController.graph.id) {
+                inclusive = true
+            }
+        }
+    }
 
     /*
     fun navigateUpIfNotHome() {

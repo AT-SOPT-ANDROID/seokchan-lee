@@ -1,0 +1,12 @@
+package org.sopt.at.domain.usecase
+
+import org.sopt.at.domain.repository.UserRepository
+import org.sopt.at.model.UserInfo
+import javax.inject.Inject
+
+class GetSignInUseCase @Inject constructor(
+    private val userRepository: UserRepository
+) {
+    operator fun invoke(userInfo: UserInfo): Result<Boolean> =
+        userRepository.getUser(userInfo)
+}
