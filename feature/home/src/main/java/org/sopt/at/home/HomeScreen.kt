@@ -20,6 +20,7 @@ import org.sopt.at.designsystem.theme.AtsoptTheme
 import org.sopt.at.home.component.HomeGenre
 import org.sopt.at.home.component.HomeGenreCategory
 import org.sopt.at.home.component.HomeMainBanner
+import org.sopt.at.home.component.HomeLazyRow
 import org.sopt.at.home.component.HomeTopAppBar
 import org.sopt.at.ui.extension.clickableWithoutRipple
 import org.sopt.at.ui.lifecycle.LaunchedEffectWithLifecycle
@@ -105,19 +106,24 @@ fun HomeScreen(
             HomeGenre(
                 mainGenre = mainGenreImage
             )
-            Text(
-                text = "logout",
-                color = AtsoptTheme.colors.white,
-                modifier = Modifier.clickableWithoutRipple {
-                    logout(false).also {
-                        navigateToSignUp()
-                    }
+            HomeLazyRow(
+                contentImages = mainBannerImage,
+                title = "오늘의 티빙 TOP 20",
+                itemSpacedBy = 12.dp,
+                suffix = { index ->
+                    Text(
+                        text = (index + 1).toString(),
+                        style = AtsoptTheme.typography.titleBold20,
+                        color = AtsoptTheme.colors.white,
+                        modifier = Modifier.padding(end = 3.dp)
+                    )
                 }
             )
-            VerticalDivider(
-                modifier = Modifier.height(3000.dp)
+            HomeLazyRow(
+                contentImages = mainBannerImage,
+                title = "지금 방영 중인 콘텐츠",
+                itemSpacedBy = 16.dp
             )
         }
-
     }
 }
