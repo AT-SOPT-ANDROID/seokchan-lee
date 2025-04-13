@@ -33,7 +33,7 @@ class SignUpViewModel @Inject constructor(
 
     fun navigateToBack() {
         viewModelScope.launch {
-            postSignUpUseCase.invoke(UserInfo(uiState.value.inputId, uiState.value.inputPassword))
+            postSignUpUseCase(UserInfo(uiState.value.inputId, uiState.value.inputPassword))
                 .onSuccess {
                     postSideEffect(SignUpSideEffect.NavigateToBack)
                 }

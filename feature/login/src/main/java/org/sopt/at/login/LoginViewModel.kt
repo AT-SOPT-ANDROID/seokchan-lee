@@ -21,7 +21,7 @@ class LoginViewModel @Inject constructor(
 
     private fun checkAutoSignIn() {
         viewModelScope.launch {
-            getAutoSignInUseCase.invoke().onSuccess {
+            getAutoSignInUseCase().onSuccess {
                 it.collect { autoSignIn ->
                     if (autoSignIn) postSideEffect(LoginSideEffect.NavigateHome)
                 }
@@ -51,7 +51,7 @@ class LoginViewModel @Inject constructor(
 
     fun navigateToHome() {
         viewModelScope.launch {
-            getSignInUseCase.invoke(UserInfo(uiState.value.id, uiState.value.password))
+            getSignInUseCase(UserInfo(uiState.value.id, uiState.value.password))
                 .onSuccess { signInSuccess ->
                     if (signInSuccess) {
                         postSideEffect(LoginSideEffect.NavigateHome)

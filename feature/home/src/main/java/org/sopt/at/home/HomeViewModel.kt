@@ -17,7 +17,7 @@ class HomeViewModel @Inject constructor(
 
     fun setAutoSignIn(autoSignIn: Boolean) {
         viewModelScope.launch {
-            setAutoSignInUseCase.invoke(autoSignIn)
+            setAutoSignInUseCase(autoSignIn)
         }
     }
 
