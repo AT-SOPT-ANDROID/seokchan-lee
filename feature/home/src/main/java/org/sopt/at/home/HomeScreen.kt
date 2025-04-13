@@ -1,19 +1,29 @@
 package org.sopt.at.home
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Text
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.flow.collectLatest
 import org.sopt.at.designsystem.theme.AtsoptTheme
+import org.sopt.at.home.component.HomeGenreCategory
+import org.sopt.at.home.component.HomeMainBanner
+import org.sopt.at.home.component.HomeTopAppBar
 import org.sopt.at.ui.extension.clickableWithoutRipple
 import org.sopt.at.ui.lifecycle.LaunchedEffectWithLifecycle
+import org.sopt.at.ui.scroll.ScrollHeaderAnimation
+import org.sopt.at.ui.scroll.ScrollStickyHeader
 
 @Composable
 fun HomeRoute(
@@ -36,29 +46,66 @@ fun HomeRoute(
     )
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
     logout: (Boolean) -> Unit,
     navigateToSignUp: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
+    val listState = rememberLazyListState()
+    val headerState = ScrollStickyHeader(listState)
+
+    val mainBannerImage = listOf(
+        org.sopt.at.designsystem.R.drawable.img_home_main_banner1,
+        org.sopt.at.designsystem.R.drawable.img_home_main_banner2,
+        org.sopt.at.designsystem.R.drawable.img_home_main_banner3,
+        org.sopt.at.designsystem.R.drawable.img_home_main_banner4,
+        org.sopt.at.designsystem.R.drawable.img_home_main_banner5,
+    )
+
+    LazyColumn(
+        state = listState,
+        modifier = modifier
+            .padding(top = 30.dp)
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "home",
-            color = AtsoptTheme.colors.white
-        )
-        Text(
-            text = "logout",
-            color = AtsoptTheme.colors.white,
-            modifier = Modifier.clickableWithoutRipple {
-                logout(false).also {
-                    navigateToSignUp()
-                }
+        stickyHeader {
+            ScrollHeaderAnimation(
+                isVisible = headerState.isVisible
+            ) {
+                HomeTopAppBar(
+                    onBroadCastClick = {
+                        //TODO.
+                    },
+                    navigateToMyPage = {
+                        //TODO. 로그아웃 옮기기
+                    }
+                )
             }
-        )
+        }
+        stickyHeader {
+            HomeGenreCategory()
+        }
+        item {
+            HomeMainBanner(
+                mainBannerList = mainBannerImage,
+                pagerCount = 5,
+            )
+            Text(
+                text = "logout",
+                color = AtsoptTheme.colors.white,
+                modifier = Modifier.clickableWithoutRipple {
+                    logout(false).also {
+                        navigateToSignUp()
+                    }
+                }
+            )
+            VerticalDivider(
+                modifier = Modifier.height(3000.dp)
+            )
+        }
+
     }
 }
