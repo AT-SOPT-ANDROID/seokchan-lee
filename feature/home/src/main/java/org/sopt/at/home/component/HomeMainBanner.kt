@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun HomeMainBanner(
-    mainBannerList: List<Int>,
+    mainBanners: List<Int>,
     pagerCount: Int,
     modifier: Modifier = Modifier,
     roundedCornerShape: RoundedCornerShape = RoundedCornerShape(8.dp),
@@ -41,7 +41,7 @@ fun HomeMainBanner(
                 .height(500.dp),
         ) {
             Image(
-                painter = painterResource(mainBannerList[page]),
+                painter = painterResource(mainBanners[page]),
                 contentDescription = "banner",
                 modifier = Modifier
                     .clip(roundedCornerShape)

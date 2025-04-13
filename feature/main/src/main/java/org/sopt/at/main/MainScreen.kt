@@ -38,6 +38,7 @@ internal fun MainScreen(
                 modifier = modifier
                     .background(color = AtsoptTheme.colors.black)
                     .fillMaxSize()
+                    .padding(bottom = 56.dp)
             ) {
                 loginNavGraph(
                     padding = innerPadding,

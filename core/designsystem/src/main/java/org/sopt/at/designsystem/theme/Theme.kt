@@ -24,7 +24,9 @@ class AtsoptColors(
     buttonSuccess: Color,
     buttonBackground: Color,
     lightGray: Color,
-    description: Color
+    description: Color,
+    homeGenre1: Color,
+    homeGenre2: Color
 ) {
     var white by mutableStateOf(white)
         private set
@@ -46,6 +48,10 @@ class AtsoptColors(
         private set
     var description by mutableStateOf(description)
         private set
+    var homeGenre1 by mutableStateOf(homeGenre1)
+        private set
+    var homeGenre2 by mutableStateOf(homeGenre2)
+        private set
 }
 
 fun AtsoptColor(
@@ -58,7 +64,9 @@ fun AtsoptColor(
     buttonSuccess: Color = ButtonSuccess,
     buttonBackground: Color = ButtonBackground,
     lightGray: Color = LightGray,
-    description: Color = Description
+    description: Color = Description,
+    homeGenre1: Color = HomeGenre1,
+    homeGenre2: Color = HomeGenre2,
 ) = AtsoptColors(
     white,
     black,
@@ -69,7 +77,9 @@ fun AtsoptColor(
     buttonSuccess,
     buttonBackground,
     lightGray,
-    description
+    description,
+    homeGenre1,
+    homeGenre2,
 )
 
 private val LocalAtsoptColors =

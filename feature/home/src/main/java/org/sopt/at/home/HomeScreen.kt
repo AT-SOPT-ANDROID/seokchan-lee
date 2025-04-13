@@ -17,6 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.flow.collectLatest
 import org.sopt.at.designsystem.theme.AtsoptTheme
+import org.sopt.at.home.component.HomeGenre
 import org.sopt.at.home.component.HomeGenreCategory
 import org.sopt.at.home.component.HomeMainBanner
 import org.sopt.at.home.component.HomeTopAppBar
@@ -64,6 +65,14 @@ fun HomeScreen(
         org.sopt.at.designsystem.R.drawable.img_home_main_banner5,
     )
 
+    val mainGenreImage = listOf(
+        org.sopt.at.designsystem.R.drawable.img_home_genre_kbo,
+        org.sopt.at.designsystem.R.drawable.img_home_genre_appletv,
+        org.sopt.at.designsystem.R.drawable.img_home_genre_kbl,
+        org.sopt.at.designsystem.R.drawable.img_home_genre_kids,
+        org.sopt.at.designsystem.R.drawable.img_home_genre_ufc,
+    )
+
     LazyColumn(
         state = listState,
         modifier = modifier
@@ -90,8 +99,11 @@ fun HomeScreen(
         }
         item {
             HomeMainBanner(
-                mainBannerList = mainBannerImage,
+                mainBanners = mainBannerImage,
                 pagerCount = 5,
+            )
+            HomeGenre(
+                mainGenre = mainGenreImage
             )
             Text(
                 text = "logout",
