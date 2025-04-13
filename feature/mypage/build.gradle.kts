@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "org.sopt.at.signup"
+    namespace = "org.sopt.at.mypage"
 }
 dependencies {
     implementation(libs.androidx.runtime.android)

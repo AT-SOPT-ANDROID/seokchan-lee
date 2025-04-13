@@ -21,6 +21,7 @@ import org.sopt.at.main.component.MainBottomBar
 import org.sopt.at.search.navigation.searchNavGraph
 import org.sopt.at.shorts.navigation.shortsNavGraph
 import org.sopt.at.signup.navigation.signUpNavGraph
+import ort.sopt.at.mypage.navigation.myPageNavGraph
 
 @Composable
 internal fun MainScreen(
@@ -51,7 +52,7 @@ internal fun MainScreen(
                 )
                 homeNavGraph(
                     padding = innerPadding,
-                    navigateToSignIn = navigator::navigateToSignIn
+                    navigateToMyPage = navigator::navigateToMyPage
                 )
                 shortsNavGraph(
                     padding = innerPadding
@@ -64,6 +65,10 @@ internal fun MainScreen(
                 )
                 historyNavGraph(
                     padding = innerPadding
+                )
+                myPageNavGraph(
+                    padding = innerPadding,
+                    navigateToSignIn = navigator::navigateToSignIn
                 )
             }
         },

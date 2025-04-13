@@ -2,12 +2,10 @@ package org.sopt.at.home
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Text
-import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -19,17 +17,16 @@ import kotlinx.coroutines.flow.collectLatest
 import org.sopt.at.designsystem.theme.AtsoptTheme
 import org.sopt.at.home.component.HomeGenre
 import org.sopt.at.home.component.HomeGenreCategory
-import org.sopt.at.home.component.HomeMainBanner
 import org.sopt.at.home.component.HomeLazyRow
+import org.sopt.at.home.component.HomeMainBanner
 import org.sopt.at.home.component.HomeTopAppBar
-import org.sopt.at.ui.extension.clickableWithoutRipple
 import org.sopt.at.ui.lifecycle.LaunchedEffectWithLifecycle
 import org.sopt.at.ui.scroll.ScrollHeaderAnimation
 import org.sopt.at.ui.scroll.ScrollStickyHeader
 
 @Composable
 fun HomeRoute(
-    navigateToSignIn: () -> Unit,
+    navigateToMyPage: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -37,22 +34,20 @@ fun HomeRoute(
     LaunchedEffectWithLifecycle {
         viewModel.sideEffect.collectLatest { sideEffect ->
             when (sideEffect) {
-                HomeSideEffect.NavigateSignUp -> navigateToSignIn()
+                HomeSideEffect.NavigateMyPage -> navigateToMyPage()
             }
         }
     }
 
     HomeScreen(
-        logout = viewModel::setAutoSignIn,
-        navigateToSignUp = viewModel::navigateToSignUp
+        navigateToMyPage = viewModel::navigateToMyPage
     )
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
-    logout: (Boolean) -> Unit,
-    navigateToSignUp: () -> Unit,
+    navigateToMyPage: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val listState = rememberLazyListState()
@@ -90,7 +85,7 @@ fun HomeScreen(
                         //TODO.
                     },
                     navigateToMyPage = {
-                        //TODO. 로그아웃 옮기기
+                        navigateToMyPage()
                     }
                 )
             }

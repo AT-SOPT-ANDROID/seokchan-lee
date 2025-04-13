@@ -14,4 +14,5 @@ dependencies {
     implementation(projects.feature.live)
     implementation(projects.feature.search)
     implementation(projects.feature.history)
+    implementation(projects.feature.mypage)
 }

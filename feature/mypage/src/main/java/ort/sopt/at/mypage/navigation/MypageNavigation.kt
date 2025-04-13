@@ -1,4 +1,4 @@
-package org.sopt.at.home.navigation
+package ort.sopt.at.mypage.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.Modifier
@@ -6,24 +6,24 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
-import org.sopt.at.home.HomeRoute
 import org.sopt.at.navigation.Route
+import ort.sopt.at.mypage.MyPageRoute
 
-fun NavController.navigateHome() {
-    navigate(Home)
+fun NavController.navigateMyPage() {
+    navigate(MyPage)
 }
 
-fun NavGraphBuilder.homeNavGraph(
+fun NavGraphBuilder.myPageNavGraph(
     padding: PaddingValues,
-    modifier: Modifier = Modifier,
-    navigateToMyPage: () -> Unit
+    navigateToSignIn: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    composable<Home> {
-        HomeRoute(
-            navigateToMyPage = navigateToMyPage
+    composable<MyPage> {
+        MyPageRoute(
+            navigateToSignIn = navigateToSignIn
         )
     }
 }
 
 @Serializable
-data object Home : Route
+data object MyPage : Route

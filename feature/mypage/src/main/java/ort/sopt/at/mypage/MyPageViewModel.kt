@@ -1,4 +1,4 @@
-package org.sopt.at.home
+package ort.sopt.at.mypage
 
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,20 +8,17 @@ import org.sopt.at.ui.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class MyPageViewModel @Inject constructor(
     private val setAutoSignInUseCase: SetAutoSignInUseCase
-) : BaseViewModel<HomeState, HomeSideEffect>(HomeState()) {
-    init {
-        setAutoSignIn()
-    }
+) : BaseViewModel<MyPageState, MyPageSideEffect>(MyPageState()) {
 
-    private fun setAutoSignIn() {
+    fun cancelAutoSignIn() {
         viewModelScope.launch {
-            setAutoSignInUseCase(true)
+            setAutoSignInUseCase(false)
         }
     }
 
-    fun navigateToMyPage() {
-        postSideEffect(HomeSideEffect.NavigateMyPage)
+    fun navigateToSignIn() {
+        postSideEffect(MyPageSideEffect.NavigateSignIn)
     }
 }

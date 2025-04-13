@@ -18,6 +18,7 @@ import org.sopt.at.navigation.Route
 import org.sopt.at.search.navigation.navigateSearch
 import org.sopt.at.shorts.navigation.navigateShorts
 import org.sopt.at.signup.navigation.SignUp
+import ort.sopt.at.mypage.navigation.MyPage
 
 internal class MainNavigator(
     val navController: NavHostController
@@ -77,6 +78,14 @@ internal class MainNavigator(
 
     fun navigateToHome() {
         navController.navigate(Home) {
+            popUpTo(navController.graph.id) {
+                inclusive = true
+            }
+        }
+    }
+
+    fun navigateToMyPage() {
+        navController.navigate(MyPage) {
             popUpTo(navController.graph.id) {
                 inclusive = true
             }

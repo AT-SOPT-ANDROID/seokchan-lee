@@ -8,5 +8,5 @@ data class HomeState(
 ) : UiState
 
 sealed interface HomeSideEffect : SideEffect {
-    data object NavigateSignUp : HomeSideEffect
+    data object NavigateMyPage : HomeSideEffect
 }
