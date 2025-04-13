@@ -31,8 +31,8 @@ import org.sopt.at.ui.lifecycle.LaunchedEffectWithLifecycle
 
 @Composable
 fun SignUpRoute(
-    modifier: Modifier = Modifier,
     navigateToSignIn: () -> Unit,
+    modifier: Modifier = Modifier,
     viewModel: SignUpViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -57,12 +57,12 @@ fun SignUpRoute(
 
 @Composable
 fun SignUpScreen(
-    modifier: Modifier = Modifier,
     inputId: String,
     inputPassword: String,
     updateInputId: (String) -> Unit,
     updateInputPassword: (String) -> Unit,
     navigateToSignIn: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState(initialPage = 0, pageCount = { 2 })
@@ -87,6 +87,8 @@ fun SignUpScreen(
             },
     ) {
         Image(
+            painter = painterResource(org.sopt.at.designsystem.R.drawable.ic_back_arrow),
+            contentDescription = "back",
             modifier = Modifier
                 .padding(top = 50.dp, bottom = 27.dp)
                 .clickableWithoutRipple {
@@ -100,23 +102,21 @@ fun SignUpScreen(
                         else -> navigateToSignIn()
                     }
                 },
-            painter = painterResource(org.sopt.at.designsystem.R.drawable.ic_back_arrow),
-            contentDescription = "back"
         )
         Text(
-            modifier = Modifier
-                .padding(bottom = 20.dp)
-                .align(Alignment.CenterHorizontally),
             text = when (pagerState.currentPage) {
                 0 -> "아이디를 입력해주세요."
                 else -> "비밀번호를 입력해주세요."
             },
             style = AtsoptTheme.typography.bodyMedium17.copy(fontSize = 22.sp),
             color = AtsoptTheme.colors.white,
+            modifier = Modifier
+                .padding(bottom = 20.dp)
+                .align(Alignment.CenterHorizontally),
         )
         HorizontalPager(
-            modifier = Modifier.weight(1f),
             state = pagerState,
+            modifier = Modifier.weight(1f),
             userScrollEnabled = false,
             verticalAlignment = Alignment.Top,
         ) { page ->
@@ -138,7 +138,6 @@ fun SignUpScreen(
             )
         }
         AtsoptBasicTextButton(
-            modifier = Modifier.padding(bottom = 30.dp),
             text = "다음",
             isActive = when (pagerState.currentPage) {
                 0 -> inputId.isNotBlank()
@@ -155,6 +154,7 @@ fun SignUpScreen(
                     else -> navigateToSignIn()
                 }
             },
+            modifier = Modifier.padding(bottom = 30.dp),
             textStyle = AtsoptTheme.typography.bodyMedium15,
             textColor = AtsoptTheme.colors.lightGray,
             backgroundColor = AtsoptTheme.colors.black,

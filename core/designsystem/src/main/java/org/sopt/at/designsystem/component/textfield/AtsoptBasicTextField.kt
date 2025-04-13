@@ -43,12 +43,12 @@ import org.sopt.at.ui.extension.clickableWithoutRipple
 
 @Composable
 fun AtsoptBasicTextField(
-    modifier: Modifier = Modifier,
-    isPassword: Boolean = false,
-    shape: Shape = RoundedCornerShape(6.dp),
     placeholder: String = "",
     labelText: String = "",
     value: String = "",
+    modifier: Modifier = Modifier,
+    isPassword: Boolean = false,
+    shape: Shape = RoundedCornerShape(6.dp),
     onValueChange: (String) -> Unit = { _ -> },
     isError: Boolean = false,
     maxLines: Int = 1,

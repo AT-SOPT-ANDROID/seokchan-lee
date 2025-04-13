@@ -22,13 +22,13 @@ internal fun MainScreen(
         modifier = modifier,
         content = { innerPadding ->
             NavHost(
-                modifier = modifier
-                    .background(color = AtsoptTheme.colors.black)
-                    .fillMaxSize(),
                 navController = navigator.navController,
                 startDestination = navigator.startDestination,
                 enterTransition = { EnterTransition.None },
-                exitTransition = { ExitTransition.None }
+                exitTransition = { ExitTransition.None },
+                modifier = modifier
+                    .background(color = AtsoptTheme.colors.black)
+                    .fillMaxSize(),
             ) {
                 loginNavGraph(
                     padding = innerPadding,

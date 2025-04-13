@@ -24,11 +24,11 @@ import org.sopt.at.ui.extension.clickableWithoutRipple
 
 @Composable
 fun AtsoptBasicTextButton(
-    modifier: Modifier = Modifier,
-    shape: Shape = RoundedCornerShape(6.dp),
     text: String,
     isActive: Boolean,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    shape: Shape = RoundedCornerShape(6.dp),
     textStyle: TextStyle = AtsoptTheme.typography.bodyMedium15,
     textColor: Color = Color.Unspecified,
     backgroundColor: Color = Color.Unspecified,

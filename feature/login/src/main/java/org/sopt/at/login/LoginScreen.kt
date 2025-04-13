@@ -45,9 +45,9 @@ import org.sopt.at.ui.lifecycle.LaunchedEffectWithLifecycle
 
 @Composable
 fun LoginRoute(
-    modifier: Modifier = Modifier,
     navigateToSignUp: () -> Unit,
     navigateToHome: () -> Unit,
+    modifier: Modifier = Modifier,
     viewModel: LoginViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -70,13 +70,13 @@ fun LoginRoute(
     }
 
     LoginScreen(
-        modifier = modifier,
         uiState = uiState,
         shakeOffset = shakeOffset.floatValue,
         updateUserID = viewModel::updateUserID,
         updateUserPassword = viewModel::updateUserPassword,
         navigateToSignUp = viewModel::navigateToSignUp,
         navigateToHome = viewModel::navigateToHome,
+        modifier = modifier,
     )
     if (showSnackBar) {
         AtsoptBasicSnackBar(
@@ -87,13 +87,13 @@ fun LoginRoute(
 
 @Composable
 fun LoginScreen(
-    modifier: Modifier = Modifier,
     uiState: LoginState,
     shakeOffset: Float,
     updateUserID: (String) -> Unit,
     updateUserPassword: (String) -> Unit,
     navigateToSignUp: () -> Unit,
     navigateToHome: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -108,24 +108,24 @@ fun LoginScreen(
             }
     ) {
         Image(
-            modifier = Modifier.padding(top = 50.dp, bottom = 50.dp),
             painter = painterResource(org.sopt.at.designsystem.R.drawable.ic_back_arrow),
-            contentDescription = "back"
+            contentDescription = "back",
+            modifier = Modifier.padding(top = 50.dp, bottom = 50.dp),
         )
         Text(
-            modifier = Modifier.padding(bottom = 30.dp),
             text = "TVING ID 로그인",
             style = AtsoptTheme.typography.titleBold20,
-            color = AtsoptTheme.colors.white
+            color = AtsoptTheme.colors.white,
+            modifier = Modifier.padding(bottom = 30.dp),
         )
         AtsoptSignUpBody(
-            modifier = Modifier.padding(bottom = 35.dp),
             focusManager = focusManager,
             userId = uiState.id,
             userPassword = uiState.password,
             updateUserID = updateUserID,
             updateUserPassword = updateUserPassword,
             navigateToHome = navigateToHome,
+            modifier = Modifier.padding(bottom = 35.dp),
         )
         AtsoptSignUpFooter(
             navigateToSignUp = navigateToSignUp
@@ -135,26 +135,27 @@ fun LoginScreen(
 
 @Composable
 private fun AtsoptSignUpBody(
-    modifier: Modifier = Modifier,
     focusManager: FocusManager,
     userId: String,
     userPassword: String,
     updateUserID: (String) -> Unit,
     updateUserPassword: (String) -> Unit,
     navigateToHome: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier,
     ) {
         AtsoptBasicTextField(
-            modifier = Modifier
-                .padding(bottom = 13.dp)
-                .fillMaxWidth(),
+
             value = userId,
             placeholder = "아이디",
             onValueChange = {
                 updateUserID(it)
             },
+            modifier = Modifier
+                .padding(bottom = 13.dp)
+                .fillMaxWidth(),
             keyboardOptions = KeyboardOptions(
                 imeAction = ImeAction.Next,
                 keyboardType = KeyboardType.Text
@@ -164,15 +165,16 @@ private fun AtsoptSignUpBody(
             )
         )
         AtsoptBasicTextField(
-            modifier = Modifier
-                .padding(bottom = 24.dp)
-                .fillMaxWidth(),
+
             isPassword = true,
             value = userPassword,
             placeholder = "비밀번호",
             onValueChange = {
                 updateUserPassword(it)
             },
+            modifier = Modifier
+                .padding(bottom = 24.dp)
+                .fillMaxWidth(),
             keyboardOptions = KeyboardOptions(
                 imeAction = ImeAction.Done,
                 keyboardType = KeyboardType.Text
@@ -194,8 +196,8 @@ private fun AtsoptSignUpBody(
 
 @Composable
 private fun AtsoptSignUpFooter(
-    modifier: Modifier = Modifier,
     navigateToSignUp: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier
@@ -210,9 +212,9 @@ private fun AtsoptSignUpFooter(
             color = AtsoptTheme.colors.lightGray,
         )
         VerticalDivider(
-            modifier = Modifier.fillMaxHeight(),
             thickness = 1.dp,
-            color = AtsoptTheme.colors.placeholder
+            color = AtsoptTheme.colors.placeholder,
+            modifier = Modifier.fillMaxHeight(),
         )
         Text(
             text = "비밀번호 찾기",
@@ -220,17 +222,17 @@ private fun AtsoptSignUpFooter(
             color = AtsoptTheme.colors.lightGray,
         )
         VerticalDivider(
-            modifier = Modifier.fillMaxHeight(),
             thickness = 1.dp,
-            color = AtsoptTheme.colors.placeholder
+            color = AtsoptTheme.colors.placeholder,
+            modifier = Modifier.fillMaxHeight(),
         )
         Text(
-            modifier = Modifier.clickableWithoutRipple {
-                navigateToSignUp()
-            },
             text = "회원가입",
             style = AtsoptTheme.typography.bodyMedium15,
             color = AtsoptTheme.colors.lightGray,
+            modifier = Modifier.clickableWithoutRipple {
+                navigateToSignUp()
+            },
         )
     }
 }

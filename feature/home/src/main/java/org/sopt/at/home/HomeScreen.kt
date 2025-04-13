@@ -17,8 +17,8 @@ import org.sopt.at.ui.lifecycle.LaunchedEffectWithLifecycle
 
 @Composable
 fun HomeRoute(
-    viewModel: HomeViewModel = hiltViewModel(),
     navigateToSignIn: () -> Unit,
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -38,9 +38,9 @@ fun HomeRoute(
 
 @Composable
 fun HomeScreen(
-    modifier: Modifier = Modifier,
     logout: (Boolean) -> Unit,
     navigateToSignUp: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier.fillMaxSize(),
@@ -52,13 +52,13 @@ fun HomeScreen(
             color = AtsoptTheme.colors.white
         )
         Text(
+            text = "logout",
+            color = AtsoptTheme.colors.white,
             modifier = Modifier.clickableWithoutRipple {
                 logout(false).also {
                     navigateToSignUp()
                 }
             },
-            text = "logout",
-            color = AtsoptTheme.colors.white
         )
     }
 }
