@@ -23,7 +23,7 @@ import org.sopt.at.designsystem.theme.AtsoptTheme
 @Composable
 fun AtsoptBasicSnackBar(
     message: String,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Box(
         modifier = modifier

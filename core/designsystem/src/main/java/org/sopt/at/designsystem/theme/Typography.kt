@@ -29,7 +29,7 @@ class AtsoptTypography internal constructor(
     bodyMedium15: TextStyle,
     bodySemibold13: TextStyle,
     bodyMedium13: TextStyle,
-    capRegular11: TextStyle,
+    capRegular11: TextStyle
 ) {
     var titleExtra24: TextStyle by mutableStateOf(titleExtra24)
         private set
@@ -64,67 +64,67 @@ fun AtsoptTypography(): AtsoptTypography {
         titleExtra24 = TextStyle(
             fontFamily = PretendardExtraBold,
             fontSize = 24.sp,
-            lineHeight = 32.sp,
+            lineHeight = 32.sp
         ),
         titleExtra20 = TextStyle(
             fontFamily = PretendardExtraBold,
             fontSize = 20.sp,
-            lineHeight = 28.sp,
+            lineHeight = 28.sp
         ),
         titleBold20 = TextStyle(
             fontFamily = PretendardBold,
             fontSize = 20.sp,
-            lineHeight = 28.sp,
+            lineHeight = 28.sp
         ),
         titleBold18 = TextStyle(
             fontFamily = PretendardBold,
             fontSize = 18.sp,
-            lineHeight = 25.sp,
+            lineHeight = 25.sp
         ),
         bodyBold17 = TextStyle(
             fontFamily = PretendardBold,
             fontSize = 17.sp,
-            lineHeight = 24.sp,
+            lineHeight = 24.sp
         ),
         bodySemibold17 = TextStyle(
             fontFamily = PretendardSemiBold,
             fontSize = 17.sp,
-            lineHeight = 24.sp,
+            lineHeight = 24.sp
         ),
         bodyMedium17 = TextStyle(
             fontFamily = PretendardMedium,
             fontSize = 17.sp,
-            lineHeight = 24.sp,
+            lineHeight = 24.sp
         ),
         bodyBold15 = TextStyle(
             fontFamily = PretendardBold,
             fontSize = 15.sp,
-            lineHeight = 21.sp,
+            lineHeight = 21.sp
         ),
         bodySemibold15 = TextStyle(
             fontFamily = PretendardSemiBold,
             fontSize = 15.sp,
-            lineHeight = 21.sp,
+            lineHeight = 21.sp
         ),
         bodyMedium15 = TextStyle(
             fontFamily = PretendardMedium,
             fontSize = 15.sp,
-            lineHeight = 21.sp,
+            lineHeight = 21.sp
         ),
         bodySemibold13 = TextStyle(
             fontFamily = PretendardSemiBold,
             fontSize = 13.sp,
-            lineHeight = 18.sp,
+            lineHeight = 18.sp
         ),
         bodyMedium13 = TextStyle(
             fontFamily = PretendardMedium,
             fontSize = 13.sp,
-            lineHeight = 18.sp,
+            lineHeight = 18.sp
         ),
         capRegular11 = TextStyle(
             fontFamily = PretendardRegular,
             fontSize = 11.sp,
-            lineHeight = 15.sp,
-        ),
+            lineHeight = 15.sp
+        )
     )
 }

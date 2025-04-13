@@ -6,7 +6,7 @@ import org.sopt.at.domain.repository.AutoSignInRepository
 import javax.inject.Inject
 
 class AutoSignInRepositoryImpl @Inject constructor(
-    private val autoSignInPreferencesDataSource: AutoSignInPreferencesDataSource,
+    private val autoSignInPreferencesDataSource: AutoSignInPreferencesDataSource
 ) : AutoSignInRepository {
 
     override val autoLogin: Result<Flow<Boolean>> =

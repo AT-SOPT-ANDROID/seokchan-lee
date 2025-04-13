@@ -33,7 +33,7 @@ fun AtsoptBasicTextButton(
     textColor: Color = Color.Unspecified,
     backgroundColor: Color = Color.Unspecified,
     borderLineColor: Color = Color.Unspecified,
-    minHeight: Dp = 52.dp,
+    minHeight: Dp = 52.dp
 ) {
     Column(
         modifier = modifier
@@ -44,19 +44,19 @@ fun AtsoptBasicTextButton(
             .border(
                 width = 1.dp,
                 color = if (isActive) Color.Unspecified else borderLineColor,
-                shape = shape,
+                shape = shape
             )
             .clickableWithoutRipple(
-                enabled = isActive,
+                enabled = isActive
             ) { onClick() },
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Center
     ) {
         Text(
             modifier = Modifier.padding(PaddingValues(vertical = 10.dp)),
             text = text,
             style = textStyle,
-            color = if (isActive) AtsoptTheme.colors.white else textColor,
+            color = if (isActive) AtsoptTheme.colors.white else textColor
         )
     }
 }

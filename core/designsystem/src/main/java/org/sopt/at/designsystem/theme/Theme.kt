@@ -24,7 +24,7 @@ class AtsoptColors(
     buttonSuccess: Color,
     buttonBackground: Color,
     lightGray: Color,
-    description: Color,
+    description: Color
 ) {
     var white by mutableStateOf(white)
         private set
@@ -58,7 +58,7 @@ fun AtsoptColor(
     buttonSuccess: Color = ButtonSuccess,
     buttonBackground: Color = ButtonBackground,
     lightGray: Color = LightGray,
-    description: Color = Description,
+    description: Color = Description
 ) = AtsoptColors(
     white,
     black,
@@ -69,7 +69,7 @@ fun AtsoptColor(
     buttonSuccess,
     buttonBackground,
     lightGray,
-    description,
+    description
 )
 
 private val LocalAtsoptColors =

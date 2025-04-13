@@ -60,7 +60,7 @@ fun AtsoptBasicTextField(
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    highlightOnFocus: Boolean = true,
+    highlightOnFocus: Boolean = true
 ) {
     val isFocused by interactionSource.collectIsFocusedAsState()
 
@@ -98,7 +98,7 @@ fun AtsoptBasicTextField(
             Column(
                 modifier = Modifier
                     .fillMaxWidth(),
-                verticalArrangement = Arrangement.Center,
+                verticalArrangement = Arrangement.Center
             ) {
                 Box(
                     modifier = Modifier
@@ -109,13 +109,13 @@ fun AtsoptBasicTextField(
                         .border(
                             width = 1.dp,
                             color = borderLineColor,
-                            shape = shape,
+                            shape = shape
                         )
-                        .padding(vertical = 16.dp, horizontal = 18.dp),
+                        .padding(vertical = 16.dp, horizontal = 18.dp)
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
                         Box(
                             modifier = Modifier.weight(1f)
@@ -126,7 +126,7 @@ fun AtsoptBasicTextField(
                                     color = AtsoptTheme.colors.placeholder,
                                     style = AtsoptTheme.typography.bodyMedium15,
                                     maxLines = 1,
-                                    overflow = TextOverflow.Clip,
+                                    overflow = TextOverflow.Clip
                                 )
                             }
                             innerText()
@@ -137,11 +137,12 @@ fun AtsoptBasicTextField(
                                     .clickableWithoutRipple {
                                         isPasswordVisible = !isPasswordVisible
                                     },
-                                painter = if (isPasswordVisible)
+                                painter = if (isPasswordVisible) {
                                     painterResource(R.drawable.ic_password_visible)
-                                else
-                                    painterResource(R.drawable.ic_password_invisible),
-                                contentDescription = "show password",
+                                } else {
+                                    painterResource(R.drawable.ic_password_invisible)
+                                },
+                                contentDescription = "show password"
                             )
                         }
                     }

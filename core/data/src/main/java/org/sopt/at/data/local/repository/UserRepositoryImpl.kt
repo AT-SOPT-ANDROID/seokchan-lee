@@ -6,7 +6,7 @@ import org.sopt.at.model.UserInfo
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
-    private val localUserDataSource: LocalUserDataSource,
+    private val localUserDataSource: LocalUserDataSource
 ) : UserRepository {
 
     override fun insertUser(user: UserInfo): Result<Boolean> =
