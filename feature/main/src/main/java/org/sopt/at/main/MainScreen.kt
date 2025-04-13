@@ -4,13 +4,22 @@ import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
+import kotlinx.collections.immutable.toPersistentList
 import org.sopt.at.designsystem.theme.AtsoptTheme
+import org.sopt.at.history.navigation.historyNavGraph
 import org.sopt.at.home.navigation.homeNavGraph
+import org.sopt.at.live.navigation.liveNavGraph
 import org.sopt.at.login.navigation.loginNavGraph
+import org.sopt.at.main.component.MainBottomBar
+import org.sopt.at.search.navigation.searchNavGraph
+import org.sopt.at.shorts.navigation.shortsNavGraph
 import org.sopt.at.signup.navigation.signUpNavGraph
 
 @Composable
@@ -43,7 +52,30 @@ internal fun MainScreen(
                     padding = innerPadding,
                     navigateToSignIn = navigator::navigateToSignIn
                 )
+                shortsNavGraph(
+                    padding = innerPadding
+                )
+                liveNavGraph(
+                    padding = innerPadding
+                )
+                searchNavGraph(
+                    padding = innerPadding
+                )
+                historyNavGraph(
+                    padding = innerPadding
+                )
             }
+        },
+        bottomBar = {
+            MainBottomBar(
+                modifier = Modifier
+                    .navigationBarsPadding()
+                    .padding(start = 8.dp, end = 8.dp, bottom = 10.dp),
+                visible = navigator.setBottomBarVisibility(),
+                tabs = MainNavTab.entries.toPersistentList(),
+                currentTab = navigator.currentTab,
+                onTabSelected = { navigator.navigate(it) }
+            )
         }
     )
 }
