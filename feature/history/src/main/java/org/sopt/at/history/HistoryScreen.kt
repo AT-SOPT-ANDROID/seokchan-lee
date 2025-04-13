@@ -8,8 +8,7 @@ import androidx.compose.ui.Alignment
 import org.sopt.at.designsystem.theme.AtsoptTheme
 
 @Composable
-fun HistoryRoute(
-) {
+fun HistoryRoute() {
     HistoryScreen()
 }
 
@@ -17,7 +16,7 @@ fun HistoryRoute(
 fun HistoryScreen() {
     Column(
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = "history",

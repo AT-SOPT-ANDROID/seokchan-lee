@@ -15,7 +15,7 @@ fun NavController.navigateHistory() {
 
 fun NavGraphBuilder.historyNavGraph(
     padding: PaddingValues,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     composable<History> {
         HistoryRoute()

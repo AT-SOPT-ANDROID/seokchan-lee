@@ -8,8 +8,7 @@ import androidx.compose.ui.Alignment
 import org.sopt.at.designsystem.theme.AtsoptTheme
 
 @Composable
-fun LiveRoute(
-) {
+fun LiveRoute() {
     LiveScreen()
 }
 
@@ -17,7 +16,7 @@ fun LiveRoute(
 fun LiveScreen() {
     Column(
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = "live",

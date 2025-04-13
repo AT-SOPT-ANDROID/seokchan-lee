@@ -66,7 +66,7 @@ fun AtsoptColor(
     lightGray: Color = LightGray,
     description: Color = Description,
     homeGenre1: Color = HomeGenre1,
-    homeGenre2: Color = HomeGenre2,
+    homeGenre2: Color = HomeGenre2
 ) = AtsoptColors(
     white,
     black,
@@ -79,7 +79,7 @@ fun AtsoptColor(
     lightGray,
     description,
     homeGenre1,
-    homeGenre2,
+    homeGenre2
 )
 
 private val LocalAtsoptColors =

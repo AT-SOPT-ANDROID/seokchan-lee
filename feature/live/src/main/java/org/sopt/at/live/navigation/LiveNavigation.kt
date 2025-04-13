@@ -15,11 +15,10 @@ fun NavController.navigateLive() {
 
 fun NavGraphBuilder.liveNavGraph(
     padding: PaddingValues,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     composable<Live> {
-        LiveRoute(
-        )
+        LiveRoute()
     }
 }
 

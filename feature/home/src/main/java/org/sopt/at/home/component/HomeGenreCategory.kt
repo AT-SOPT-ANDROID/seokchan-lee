@@ -14,7 +14,7 @@ import org.sopt.at.designsystem.theme.AtsoptTheme
 
 @Composable
 fun HomeGenreCategory(
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
@@ -22,7 +22,7 @@ fun HomeGenreCategory(
             .padding(vertical = 16.dp, horizontal = 30.dp)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
             text = "드라마",

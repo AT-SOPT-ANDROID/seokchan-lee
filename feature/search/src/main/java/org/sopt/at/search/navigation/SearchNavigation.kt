@@ -15,11 +15,10 @@ fun NavController.navigateSearch() {
 
 fun NavGraphBuilder.searchNavGraph(
     padding: PaddingValues,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     composable<Search> {
-        SearchRoute(
-        )
+        SearchRoute()
     }
 }
 

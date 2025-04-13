@@ -15,11 +15,10 @@ fun NavController.navigateShorts() {
 
 fun NavGraphBuilder.shortsNavGraph(
     padding: PaddingValues,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     composable<Shorts> {
-        ShortsRoute(
-        )
+        ShortsRoute()
     }
 }
 

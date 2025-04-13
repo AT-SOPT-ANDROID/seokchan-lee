@@ -58,7 +58,7 @@ fun HomeScreen(
         org.sopt.at.designsystem.R.drawable.img_home_main_banner2,
         org.sopt.at.designsystem.R.drawable.img_home_main_banner3,
         org.sopt.at.designsystem.R.drawable.img_home_main_banner4,
-        org.sopt.at.designsystem.R.drawable.img_home_main_banner5,
+        org.sopt.at.designsystem.R.drawable.img_home_main_banner5
     )
 
     val mainGenreImage = listOf(
@@ -66,7 +66,7 @@ fun HomeScreen(
         org.sopt.at.designsystem.R.drawable.img_home_genre_appletv,
         org.sopt.at.designsystem.R.drawable.img_home_genre_kbl,
         org.sopt.at.designsystem.R.drawable.img_home_genre_kids,
-        org.sopt.at.designsystem.R.drawable.img_home_genre_ufc,
+        org.sopt.at.designsystem.R.drawable.img_home_genre_ufc
     )
 
     LazyColumn(
@@ -82,7 +82,7 @@ fun HomeScreen(
             ) {
                 HomeTopAppBar(
                     onBroadCastClick = {
-                        //TODO.
+                        // TODO.
                     },
                     navigateToMyPage = {
                         navigateToMyPage()
@@ -96,7 +96,7 @@ fun HomeScreen(
         item {
             HomeMainBanner(
                 mainBanners = mainBannerImage,
-                pagerCount = 5,
+                pagerCount = 5
             )
             HomeGenre(
                 mainGenre = mainGenreImage

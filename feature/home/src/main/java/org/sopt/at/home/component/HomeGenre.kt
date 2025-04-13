@@ -27,7 +27,7 @@ fun HomeGenre(
     innerPadding: PaddingValues = PaddingValues(horizontal = 17.dp, vertical = 8.dp),
     roundedCornerShape: RoundedCornerShape = RoundedCornerShape(6.dp),
     topColor: Color = AtsoptTheme.colors.homeGenre1,
-    bottomColor: Color = AtsoptTheme.colors.homeGenre2,
+    bottomColor: Color = AtsoptTheme.colors.homeGenre2
 ) {
     val gradientBackground = Brush.verticalGradient(
         colors = listOf(topColor, bottomColor)
@@ -46,7 +46,7 @@ fun HomeGenre(
                     .clip(roundedCornerShape)
                     .background(gradientBackground)
                     .padding(innerPadding),
-                contentAlignment = Alignment.Center,
+                contentAlignment = Alignment.Center
             ) {
                 Image(
                     painter = painterResource(genreImage),

@@ -26,7 +26,7 @@ fun HomeLazyRow(
     itemSpacedBy: Dp,
     modifier: Modifier = Modifier,
     roundedCornerShape: RoundedCornerShape = RoundedCornerShape(6.dp),
-    suffix: (@Composable (Int) -> Unit)? = null,
+    suffix: (@Composable (Int) -> Unit)? = null
 ) {
     Column(
         modifier = modifier.padding(horizontal = 8.dp, vertical = 25.dp)
@@ -43,7 +43,7 @@ fun HomeLazyRow(
         ) {
             itemsIndexed(contentImages) { index, contentImages ->
                 Row(
-                    verticalAlignment = Alignment.Bottom,
+                    verticalAlignment = Alignment.Bottom
                 ) {
                     suffix?.invoke(index)
                     Image(

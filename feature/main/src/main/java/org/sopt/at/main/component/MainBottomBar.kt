@@ -30,21 +30,21 @@ internal fun MainBottomBar(
     visible: Boolean,
     tabs: PersistentList<MainNavTab>,
     currentTab: MainNavTab?,
-    onTabSelected: (MainNavTab) -> Unit,
+    onTabSelected: (MainNavTab) -> Unit
 ) {
     AnimatedVisibility(
-        visible = visible,
+        visible = visible
     ) {
         Row(
             modifier = modifier
                 .fillMaxWidth()
-                .height(50.dp),
+                .height(50.dp)
         ) {
             tabs.forEach { tab ->
                 MainBottomBarItem(
                     tab = tab,
                     selected = tab == currentTab,
-                    onClick = { onTabSelected(tab) },
+                    onClick = { onTabSelected(tab) }
                 )
             }
         }
@@ -56,7 +56,7 @@ private fun RowScope.MainBottomBarItem(
     modifier: Modifier = Modifier,
     tab: MainNavTab,
     selected: Boolean,
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ) {
     val bottomBarColor = AtsoptTheme.colors.white.copy(alpha = if (selected) 1f else 0.4f)
     Column(
@@ -68,7 +68,7 @@ private fun RowScope.MainBottomBarItem(
                 indication = null,
                 role = null,
                 interactionSource = remember { MutableInteractionSource() },
-                onClick = onClick,
+                onClick = onClick
             ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center
@@ -79,7 +79,7 @@ private fun RowScope.MainBottomBarItem(
             modifier = Modifier
                 .size(30.dp)
                 .padding(bottom = 5.dp),
-            tint = bottomBarColor,
+            tint = bottomBarColor
         )
         Text(
             text = tab.contentDescription,

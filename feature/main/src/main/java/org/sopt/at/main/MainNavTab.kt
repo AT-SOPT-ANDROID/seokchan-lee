@@ -11,32 +11,32 @@ import org.sopt.at.shorts.navigation.Shorts
 internal enum class MainNavTab(
     val iconResId: Int,
     internal val contentDescription: String,
-    val route: Route,
+    val route: Route
 ) {
     HOME(
         iconResId = org.sopt.at.designsystem.R.drawable.ic_bottom_nav_home,
         contentDescription = "HOME",
-        Home,
+        Home
     ),
     SHORTS(
         iconResId = org.sopt.at.designsystem.R.drawable.ic_bottom_nav_shorts,
         contentDescription = "Shorts",
-        Shorts,
+        Shorts
     ),
     LIVE(
         iconResId = org.sopt.at.designsystem.R.drawable.ic_bottom_nav_live,
         contentDescription = "LIVE",
-        Live,
+        Live
     ),
     SEARCH(
         iconResId = org.sopt.at.designsystem.R.drawable.ic_bottom_nav_search,
         contentDescription = "SEARCH",
-        Search,
+        Search
     ),
     HISTORY(
         iconResId = org.sopt.at.designsystem.R.drawable.ic_bottom_nav_history,
         contentDescription = "HISTORY",
-        History,
+        History
     );
 
     companion object {

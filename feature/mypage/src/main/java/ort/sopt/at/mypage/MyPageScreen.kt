@@ -27,18 +27,18 @@ fun MyPageRoute(
 
     MyPageScreen(
         logout = viewModel::cancelAutoSignIn,
-        navigateToSignUp = viewModel::navigateToSignIn,
+        navigateToSignUp = viewModel::navigateToSignIn
     )
 }
 
 @Composable
 fun MyPageScreen(
     logout: () -> Unit,
-    navigateToSignUp: () -> Unit,
+    navigateToSignUp: () -> Unit
 ) {
     Column(
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = "logout",

@@ -19,13 +19,13 @@ import org.sopt.at.ui.extension.clickableWithoutRipple
 fun HomeTopAppBar(
     onBroadCastClick: () -> Unit,
     navigateToMyPage: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
             .padding(horizontal = 10.dp)
             .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
             painter = painterResource(org.sopt.at.designsystem.R.drawable.ic_app_logo),

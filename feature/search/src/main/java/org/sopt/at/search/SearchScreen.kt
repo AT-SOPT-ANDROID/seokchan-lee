@@ -8,8 +8,7 @@ import androidx.compose.ui.Alignment
 import org.sopt.at.designsystem.theme.AtsoptTheme
 
 @Composable
-fun SearchRoute(
-) {
+fun SearchRoute() {
     SearchScreen()
 }
 
@@ -17,7 +16,7 @@ fun SearchRoute(
 fun SearchScreen() {
     Column(
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = "search",

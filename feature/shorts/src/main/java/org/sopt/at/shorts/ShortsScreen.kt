@@ -8,8 +8,7 @@ import androidx.compose.ui.Alignment
 import org.sopt.at.designsystem.theme.AtsoptTheme
 
 @Composable
-fun ShortsRoute(
-) {
+fun ShortsRoute() {
     ShortsScreen()
 }
 
@@ -17,7 +16,7 @@ fun ShortsRoute(
 fun ShortsScreen() {
     Column(
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = "shorts",

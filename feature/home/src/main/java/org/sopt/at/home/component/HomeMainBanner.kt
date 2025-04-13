@@ -24,7 +24,7 @@ fun HomeMainBanner(
     modifier: Modifier = Modifier,
     roundedCornerShape: RoundedCornerShape = RoundedCornerShape(8.dp),
     contentPadding: Dp = 30.dp,
-    pageSpacing: Dp = 20.dp,
+    pageSpacing: Dp = 20.dp
 ) {
     val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState(initialPage = 0, pageCount = { pagerCount })
@@ -33,12 +33,12 @@ fun HomeMainBanner(
         state = pagerState,
         userScrollEnabled = true,
         contentPadding = PaddingValues(horizontal = contentPadding),
-        pageSpacing = pageSpacing,
+        pageSpacing = pageSpacing
     ) { page ->
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(500.dp),
+                .height(500.dp)
         ) {
             Image(
                 painter = painterResource(mainBanners[page]),
