@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val setAutoSignInUseCase: SetAutoSignInUseCase,
+    private val setAutoSignInUseCase: SetAutoSignInUseCase
 ) : BaseViewModel<HomeState, HomeSideEffect>(HomeState()) {
     init {
         setAutoSignIn(true)

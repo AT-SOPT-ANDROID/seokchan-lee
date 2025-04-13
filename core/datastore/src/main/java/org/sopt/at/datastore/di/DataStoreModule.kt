@@ -14,8 +14,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import org.sopt.at.datastore.source.AutoSignInPreferencesDataSource
 import org.sopt.at.datastore.datastore.DefaultAutoSignInPreferencesDataSource
+import org.sopt.at.datastore.source.AutoSignInPreferencesDataSource
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -25,7 +25,7 @@ internal abstract class DataModule {
 
     @Binds
     abstract fun bindsAutoSignInLocalDataSource(
-        dataSource: DefaultAutoSignInPreferencesDataSource,
+        dataSource: DefaultAutoSignInPreferencesDataSource
     ): AutoSignInPreferencesDataSource
 }
 

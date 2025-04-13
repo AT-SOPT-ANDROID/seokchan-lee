@@ -16,7 +16,7 @@ fun NavController.navigateHome() {
 fun NavGraphBuilder.homeNavGraph(
     padding: PaddingValues,
     modifier: Modifier = Modifier,
-    navigateToSignIn: () -> Unit,
+    navigateToSignIn: () -> Unit
 ) {
     composable<Home> {
         HomeRoute(

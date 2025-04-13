@@ -11,7 +11,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class DefaultAutoSignInPreferencesDataSource @Inject constructor(
-    @Named("authDataStore") private val dataStore: DataStore<Preferences>,
+    @Named("authDataStore") private val dataStore: DataStore<Preferences>
 ) : AutoSignInPreferencesDataSource {
 
     object PreferencesKey {

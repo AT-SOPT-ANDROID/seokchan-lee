@@ -50,12 +50,12 @@ fun Modifier.customClickable(
 fun Modifier.clickableWithoutRipple(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource = MutableInteractionSource(),
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ): Modifier {
     return this.clickable(
         enabled = enabled,
         interactionSource = interactionSource,
         indication = null,
-        onClick = onClick,
+        onClick = onClick
     )
 }

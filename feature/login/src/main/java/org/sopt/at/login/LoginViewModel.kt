@@ -12,7 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val getSignInUseCase: GetSignInUseCase,
-    private val getAutoSignInUseCase: GetAutoSignInUseCase,
+    private val getAutoSignInUseCase: GetAutoSignInUseCase
 ) :
     BaseViewModel<LoginState, LoginSideEffect>(LoginState()) {
     init {

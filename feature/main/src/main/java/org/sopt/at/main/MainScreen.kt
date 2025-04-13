@@ -28,7 +28,7 @@ internal fun MainScreen(
                 exitTransition = { ExitTransition.None },
                 modifier = modifier
                     .background(color = AtsoptTheme.colors.black)
-                    .fillMaxSize(),
+                    .fillMaxSize()
             ) {
                 loginNavGraph(
                     padding = innerPadding,

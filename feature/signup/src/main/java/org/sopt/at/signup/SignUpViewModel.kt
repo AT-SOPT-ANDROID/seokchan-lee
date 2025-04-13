@@ -1,6 +1,5 @@
 package org.sopt.at.signup
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -11,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    private val postSignUpUseCase: PostSignUpUseCase,
+    private val postSignUpUseCase: PostSignUpUseCase
 ) :
     BaseViewModel<SignUpState, SignUpSideEffect>(SignUpState()) {
 
@@ -38,7 +37,7 @@ class SignUpViewModel @Inject constructor(
                     postSideEffect(SignUpSideEffect.NavigateToBack)
                 }
                 .onFailure {
-                    //TODO. 회원가입 실패
+                    // TODO. 회원가입 실패
                 }
         }
     }

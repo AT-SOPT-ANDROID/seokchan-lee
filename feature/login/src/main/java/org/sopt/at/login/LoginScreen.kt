@@ -48,7 +48,7 @@ fun LoginRoute(
     navigateToSignUp: () -> Unit,
     navigateToHome: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: LoginViewModel = hiltViewModel(),
+    viewModel: LoginViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var showSnackBar by remember { mutableStateOf(false) }
@@ -76,7 +76,7 @@ fun LoginRoute(
         updateUserPassword = viewModel::updateUserPassword,
         navigateToSignUp = viewModel::navigateToSignUp,
         navigateToHome = viewModel::navigateToHome,
-        modifier = modifier,
+        modifier = modifier
     )
     if (showSnackBar) {
         AtsoptBasicSnackBar(
@@ -93,7 +93,7 @@ fun LoginScreen(
     updateUserPassword: (String) -> Unit,
     navigateToSignUp: () -> Unit,
     navigateToHome: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -110,13 +110,13 @@ fun LoginScreen(
         Image(
             painter = painterResource(org.sopt.at.designsystem.R.drawable.ic_back_arrow),
             contentDescription = "back",
-            modifier = Modifier.padding(top = 50.dp, bottom = 50.dp),
+            modifier = Modifier.padding(top = 50.dp, bottom = 50.dp)
         )
         Text(
             text = "TVING ID 로그인",
             style = AtsoptTheme.typography.titleBold20,
             color = AtsoptTheme.colors.white,
-            modifier = Modifier.padding(bottom = 30.dp),
+            modifier = Modifier.padding(bottom = 30.dp)
         )
         AtsoptSignUpBody(
             focusManager = focusManager,
@@ -125,7 +125,7 @@ fun LoginScreen(
             updateUserID = updateUserID,
             updateUserPassword = updateUserPassword,
             navigateToHome = navigateToHome,
-            modifier = Modifier.padding(bottom = 35.dp),
+            modifier = Modifier.padding(bottom = 35.dp)
         )
         AtsoptSignUpFooter(
             navigateToSignUp = navigateToSignUp
@@ -141,10 +141,10 @@ private fun AtsoptSignUpBody(
     updateUserID: (String) -> Unit,
     updateUserPassword: (String) -> Unit,
     navigateToHome: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier,
+        modifier = modifier
     ) {
         AtsoptBasicTextField(
 
@@ -197,34 +197,34 @@ private fun AtsoptSignUpBody(
 @Composable
 private fun AtsoptSignUpFooter(
     navigateToSignUp: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Min),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
     ) {
         Text(
             text = "아이디 찾기",
             style = AtsoptTheme.typography.bodyMedium15,
-            color = AtsoptTheme.colors.lightGray,
+            color = AtsoptTheme.colors.lightGray
         )
         VerticalDivider(
             thickness = 1.dp,
             color = AtsoptTheme.colors.placeholder,
-            modifier = Modifier.fillMaxHeight(),
+            modifier = Modifier.fillMaxHeight()
         )
         Text(
             text = "비밀번호 찾기",
             style = AtsoptTheme.typography.bodyMedium15,
-            color = AtsoptTheme.colors.lightGray,
+            color = AtsoptTheme.colors.lightGray
         )
         VerticalDivider(
             thickness = 1.dp,
             color = AtsoptTheme.colors.placeholder,
-            modifier = Modifier.fillMaxHeight(),
+            modifier = Modifier.fillMaxHeight()
         )
         Text(
             text = "회원가입",
@@ -232,7 +232,7 @@ private fun AtsoptSignUpFooter(
             color = AtsoptTheme.colors.lightGray,
             modifier = Modifier.clickableWithoutRipple {
                 navigateToSignUp()
-            },
+            }
         )
     }
 }

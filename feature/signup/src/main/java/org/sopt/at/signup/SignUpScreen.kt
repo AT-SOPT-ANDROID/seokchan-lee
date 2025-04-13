@@ -33,7 +33,7 @@ import org.sopt.at.ui.lifecycle.LaunchedEffectWithLifecycle
 fun SignUpRoute(
     navigateToSignIn: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: SignUpViewModel = hiltViewModel(),
+    viewModel: SignUpViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -62,7 +62,7 @@ fun SignUpScreen(
     updateInputId: (String) -> Unit,
     updateInputPassword: (String) -> Unit,
     navigateToSignIn: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState(initialPage = 0, pageCount = { 2 })
@@ -84,7 +84,7 @@ fun SignUpScreen(
             .padding(horizontal = 10.dp)
             .clickableWithoutRipple {
                 focusManager.clearFocus(force = true)
-            },
+            }
     ) {
         Image(
             painter = painterResource(org.sopt.at.designsystem.R.drawable.ic_back_arrow),
@@ -101,7 +101,7 @@ fun SignUpScreen(
 
                         else -> navigateToSignIn()
                     }
-                },
+                }
         )
         Text(
             text = when (pagerState.currentPage) {
@@ -112,13 +112,13 @@ fun SignUpScreen(
             color = AtsoptTheme.colors.white,
             modifier = Modifier
                 .padding(bottom = 20.dp)
-                .align(Alignment.CenterHorizontally),
+                .align(Alignment.CenterHorizontally)
         )
         HorizontalPager(
             state = pagerState,
             modifier = Modifier.weight(1f),
             userScrollEnabled = false,
-            verticalAlignment = Alignment.Top,
+            verticalAlignment = Alignment.Top
         ) { page ->
             SignUpPage(
                 pagerState.currentPage,
@@ -134,7 +134,7 @@ fun SignUpScreen(
                 inputId = inputId,
                 inputPassword = inputPassword,
                 updateInputID = updateInputId,
-                updateInputPassword = updateInputPassword,
+                updateInputPassword = updateInputPassword
             )
         }
         AtsoptBasicTextButton(
@@ -158,7 +158,7 @@ fun SignUpScreen(
             textStyle = AtsoptTheme.typography.bodyMedium15,
             textColor = AtsoptTheme.colors.lightGray,
             backgroundColor = AtsoptTheme.colors.black,
-            borderLineColor = AtsoptTheme.colors.lightGray,
+            borderLineColor = AtsoptTheme.colors.lightGray
         )
     }
 }
@@ -172,7 +172,7 @@ fun SignUpPage(
     inputId: String,
     inputPassword: String,
     updateInputID: (String) -> Unit,
-    updateInputPassword: (String) -> Unit,
+    updateInputPassword: (String) -> Unit
 ) {
     Column {
         AtsoptBasicTextField(
@@ -180,13 +180,19 @@ fun SignUpPage(
                 .padding(bottom = 15.dp)
                 .fillMaxWidth(),
             isPassword = isPassword,
-            value = if (currentPage == 0) inputId
-            else inputPassword,
+            value = if (currentPage == 0) {
+                inputId
+            } else {
+                inputPassword
+            },
             placeholder = placeholder,
             onValueChange = {
-                if (currentPage == 0) updateInputID(it)
-                else updateInputPassword(it)
-            },
+                if (currentPage == 0) {
+                    updateInputID(it)
+                } else {
+                    updateInputPassword(it)
+                }
+            }
         )
         Text(
             text = description,

@@ -22,7 +22,7 @@ fun NavGraphBuilder.loginNavGraph(
     composable<Login> {
         LoginRoute(
             navigateToSignUp = navigateToSignUp,
-            navigateToHome = navigateToHome,
+            navigateToHome = navigateToHome
         )
     }
 }

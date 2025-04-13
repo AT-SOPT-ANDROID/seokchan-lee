@@ -18,7 +18,7 @@ import org.sopt.at.ui.lifecycle.LaunchedEffectWithLifecycle
 @Composable
 fun HomeRoute(
     navigateToSignIn: () -> Unit,
-    viewModel: HomeViewModel = hiltViewModel(),
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -40,7 +40,7 @@ fun HomeRoute(
 fun HomeScreen(
     logout: (Boolean) -> Unit,
     navigateToSignUp: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier.fillMaxSize(),
@@ -58,7 +58,7 @@ fun HomeScreen(
                 logout(false).also {
                     navigateToSignUp()
                 }
-            },
+            }
         )
     }
 }
