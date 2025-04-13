@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import org.sopt.at.designsystem.theme.AtsoptTheme
 
 @Composable
 fun HistoryRoute(
@@ -18,6 +19,9 @@ fun HistoryScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("history")
+        Text(
+            text = "history",
+            color = AtsoptTheme.colors.white
+        )
     }
 }
