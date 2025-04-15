@@ -7,7 +7,7 @@ enum class HomeCategory {
     MOVIE,
     SPORTS,
     ANIMATION,
-    NEWS,
+    NEWS
     ;
 
     companion object {

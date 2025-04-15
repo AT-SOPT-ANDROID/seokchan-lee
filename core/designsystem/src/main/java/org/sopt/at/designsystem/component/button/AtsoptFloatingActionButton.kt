@@ -19,7 +19,7 @@ import org.sopt.at.ui.extension.clickableWithoutRipple
 @Composable
 fun AtsoptFloatingActionButton(
     onClick: (Boolean) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Box(
         modifier = modifier

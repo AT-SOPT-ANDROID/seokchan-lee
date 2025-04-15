@@ -4,7 +4,7 @@ enum class HistoryCategory {
     VIEW_HISTORY,
     PURCHASE_HISTORY,
     FAVORITE_SERIES,
-    FAVORITE_MOVIE,
+    FAVORITE_MOVIE
     ;
 
     companion object {

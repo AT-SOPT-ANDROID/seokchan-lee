@@ -17,7 +17,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val setAutoSignInUseCase: SetAutoSignInUseCase,
     private val postBannerUseCase: PostBannerUseCase,
-    private val getBannerUseCase: GetBannerUseCase,
+    private val getBannerUseCase: GetBannerUseCase
 ) : BaseViewModel<HomeState, HomeSideEffect>(HomeState()) {
 
     init {

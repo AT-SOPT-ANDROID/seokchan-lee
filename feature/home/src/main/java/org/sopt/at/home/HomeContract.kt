@@ -1,7 +1,7 @@
 package org.sopt.at.home
 
-import org.sopt.at.model.BannerInfo
 import org.sopt.at.home.model.HomeCategory
+import org.sopt.at.model.BannerInfo
 import org.sopt.at.ui.base.SideEffect
 import org.sopt.at.ui.base.UiState
 

@@ -76,7 +76,7 @@ fun HomeScreen(
         "movie",
         "sports",
         "animation",
-        "news",
+        "news"
     )
 
     val mainGenreImage = listOf(
@@ -132,7 +132,7 @@ fun HomeScreen(
                     HomeCategory.ANIMATION -> 4
                     HomeCategory.NEWS -> 5
                     HomeCategory.HOME -> -1
-                },
+                }
             )
         }
         item {

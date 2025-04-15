@@ -6,7 +6,7 @@ interface BannerRepository {
     fun insertBanner(
         category: String,
         title: String,
-        image: String,
+        image: String
     ): Result<Boolean>
 
     fun getBanner(category: String): Result<List<BannerInfo>>

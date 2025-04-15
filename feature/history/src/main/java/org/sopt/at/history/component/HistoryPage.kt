@@ -26,7 +26,7 @@ fun HistoryPage(
     favoriteBanners: List<BannerInfo>,
     updateDeleteFavoriteTitle: (String) -> Unit,
     onLongClick: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier.fillMaxSize()
@@ -43,7 +43,7 @@ fun HistoryPage(
                     title = favoriteBanners[index].title,
                     image = favoriteBanners[index].image,
                     updateDeleteFavoriteTitle = updateDeleteFavoriteTitle,
-                    onLongClick = onLongClick,
+                    onLongClick = onLongClick
                 )
             }
         }
@@ -56,7 +56,7 @@ fun HistoryCell(
     image: Int,
     updateDeleteFavoriteTitle: (String) -> Unit,
     onLongClick: () -> Unit,
-    roundedCornerShape: RoundedCornerShape = RoundedCornerShape(6.dp),
+    roundedCornerShape: RoundedCornerShape = RoundedCornerShape(6.dp)
 ) {
     Column(
         modifier = Modifier

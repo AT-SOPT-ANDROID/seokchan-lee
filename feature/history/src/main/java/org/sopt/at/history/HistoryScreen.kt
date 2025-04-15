@@ -43,7 +43,7 @@ fun HistoryRoute(
         currentCategory = uiState.currentCategory,
         changeCurrentCategory = viewModel::changeCurrentCategory,
         showFavoriteDialog = viewModel::showFavoriteDialog,
-        updateDeleteFavoriteTitle = viewModel::updateInputFavoriteTitle,
+        updateDeleteFavoriteTitle = viewModel::updateInputFavoriteTitle
     )
     when (uiState.favoriteDialogShown) {
         FavoriteDialogState.DeleteDialogShown ->
@@ -85,7 +85,7 @@ fun HistoryScreen(
     changeCurrentCategory: (String) -> Unit,
     showFavoriteDialog: (FavoriteDialogState) -> Unit,
     updateDeleteFavoriteTitle: (String) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     val pagerState = rememberPagerState(initialPage = 0, pageCount = { 4 })
     val coroutineScope = rememberCoroutineScope()
@@ -94,7 +94,7 @@ fun HistoryScreen(
         "view_history",
         "purchase_history",
         "favorite_series",
-        "favorite_movie",
+        "favorite_movie"
     )
 
     LaunchedEffect(currentCategory) {
@@ -144,7 +144,7 @@ fun HistoryScreen(
                     HistoryCategory.FAVORITE_SERIES -> 2
                     HistoryCategory.FAVORITE_MOVIE -> 3
                 },
-                horizontalPadding = 10.dp,
+                horizontalPadding = 10.dp
             )
             HorizontalPager(
                 state = pagerState,

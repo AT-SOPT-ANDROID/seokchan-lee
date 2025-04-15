@@ -28,18 +28,18 @@ fun AtsoptTabRow(
     changeCategory: (String) -> Unit,
     selectedTabIndex: Int,
     modifier: Modifier = Modifier,
-    horizontalPadding: Dp = 0.dp,
+    horizontalPadding: Dp = 0.dp
 ) {
     var textWidth by remember { mutableIntStateOf(0) }
 
     Column(
         modifier = modifier
             .background(AtsoptTheme.colors.black)
-            .padding(vertical = 13.dp, horizontal = horizontalPadding),
+            .padding(vertical = 13.dp, horizontal = horizontalPadding)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             categoryItem.forEachIndexed { index, title ->
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {

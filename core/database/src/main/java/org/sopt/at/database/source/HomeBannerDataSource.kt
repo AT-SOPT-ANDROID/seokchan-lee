@@ -6,7 +6,7 @@ interface HomeBannerDataSource {
     fun insertBanner(
         category: String,
         title: String,
-        image: String,
+        image: String
     ): Boolean
 
     fun getBanner(category: String): List<BannerInfo>

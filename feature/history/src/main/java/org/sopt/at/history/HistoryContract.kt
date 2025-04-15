@@ -10,9 +10,7 @@ data class HistoryState(
     val currentCategory: HistoryCategory = HistoryCategory.VIEW_HISTORY,
     val favoriteBanners: List<BannerInfo> = emptyList(),
     val favoriteDialogShown: FavoriteDialogState = FavoriteDialogState.UnShown,
-    val inputFavoriteTitle: String = "",
+    val inputFavoriteTitle: String = ""
 ) : UiState
 
-sealed interface HistorySideEffect : SideEffect {
-
-}
+sealed interface HistorySideEffect : SideEffect

@@ -44,7 +44,7 @@ fun AtsoptBasicDialog(
         Box(
             modifier = modifier
                 .fillMaxWidth()
-                .background(shape = shape, color = AtsoptTheme.colors.description),
+                .background(shape = shape, color = AtsoptTheme.colors.description)
         ) {
             Column(
                 modifier = modifier
@@ -67,7 +67,7 @@ fun AtsoptBasicDialog(
                         .height(42.dp)
                         .padding(bottom = 10.dp)
                 )
-                suffix?.invoke(value) { onValueChange(it)}
+                suffix?.invoke(value) { onValueChange(it) }
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                     DialogButton(
                         modifier = Modifier
@@ -75,7 +75,7 @@ fun AtsoptBasicDialog(
                             .weight(1f),
                         text = cancelButtonText,
                         textColor = AtsoptTheme.colors.black,
-                        backgroundColor = AtsoptTheme.colors.lightGray,
+                        backgroundColor = AtsoptTheme.colors.lightGray
                     )
                     DialogButton(
                         text = successButtonText,
@@ -86,7 +86,7 @@ fun AtsoptBasicDialog(
                                 onClick()
                                 onCancelClick(false)
                             }
-                            .weight(1f),
+                            .weight(1f)
                     )
                 }
             }
@@ -99,7 +99,7 @@ private fun DialogButton(
     modifier: Modifier = Modifier,
     text: String,
     textColor: Color,
-    backgroundColor: Color,
+    backgroundColor: Color
 ) {
     Text(
         text = text,

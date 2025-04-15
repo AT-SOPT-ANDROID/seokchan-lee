@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HistoryViewModel @Inject constructor(
     private val postFavoriteBannerUseCase: PostFavoriteBannerUseCase,
-    private val getFavoriteBannerUseCase: GetFavoriteBannerUseCase,
+    private val getFavoriteBannerUseCase: GetFavoriteBannerUseCase
 ) :
     BaseViewModel<HistoryState, HistorySideEffect>(HistoryState()) {
 
@@ -23,8 +23,9 @@ class HistoryViewModel @Inject constructor(
 
     fun setFavoriteBanner(isFavorite: Boolean) {
         viewModelScope.launch {
-            if (uiState.value.inputFavoriteTitle.isNotBlank())
+            if (uiState.value.inputFavoriteTitle.isNotBlank()) {
                 postFavoriteBannerUseCase(uiState.value.inputFavoriteTitle, isFavorite)
+            }
         }
     }
 
