@@ -4,13 +4,14 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
 import org.sopt.at.navigation.Route
 import org.sopt.at.search.SearchRoute
 
-fun NavController.navigateSearch() {
-    navigate(Search)
+fun NavController.navigateSearch(navOptions: NavOptions) {
+    navigate(Search, navOptions)
 }
 
 fun NavGraphBuilder.searchNavGraph(

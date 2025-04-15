@@ -11,7 +11,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import org.sopt.at.history.navigation.navigateHistory
 import org.sopt.at.home.navigation.Home
-import org.sopt.at.home.navigation.navigateHome
 import org.sopt.at.live.navigation.navigateLive
 import org.sopt.at.login.navigation.Login
 import org.sopt.at.navigation.Route
@@ -42,12 +41,17 @@ internal class MainNavigator(
             launchSingleTop = true
             restoreState = true
         }
+
         when (tab) {
-            MainNavTab.HOME -> navController.navigateHome()
-            MainNavTab.SHORTS -> navController.navigateShorts()
-            MainNavTab.LIVE -> navController.navigateLive()
-            MainNavTab.SEARCH -> navController.navigateSearch()
-            MainNavTab.HISTORY -> navController.navigateHistory()
+            MainNavTab.HOME -> {
+                navController.popBackStack(MainNavTab.HOME.route, inclusive = true)
+                navController.navigate(MainNavTab.HOME.route, navOptions)
+            }
+
+            MainNavTab.SHORTS -> navController.navigateShorts(navOptions)
+            MainNavTab.LIVE -> navController.navigateLive(navOptions)
+            MainNavTab.SEARCH -> navController.navigateSearch(navOptions)
+            MainNavTab.HISTORY -> navController.navigateHistory(navOptions)
         }
     }
 
@@ -85,11 +89,7 @@ internal class MainNavigator(
     }
 
     fun navigateToMyPage() {
-        navController.navigate(MyPage) {
-            popUpTo(navController.graph.id) {
-                inclusive = true
-            }
-        }
+        navController.navigate(MyPage)
     }
 
     /*
