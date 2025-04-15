@@ -9,6 +9,7 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,8 +27,11 @@ fun HomeMainBanner(
     contentPadding: Dp = 30.dp,
     pageSpacing: Dp = 20.dp
 ) {
-    val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState(initialPage = 0, pageCount = { pagerCount })
+
+    LaunchedEffect(mainBanners) {
+        pagerState.scrollToPage(0)
+    }
 
     HorizontalPager(
         state = pagerState,

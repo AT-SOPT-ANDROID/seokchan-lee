@@ -7,19 +7,25 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.flow.collectLatest
+import org.sopt.at.designsystem.component.tabrow.AtsoptTabRow
 import org.sopt.at.designsystem.theme.AtsoptTheme
 import org.sopt.at.home.component.HomeGenre
-import org.sopt.at.home.component.HomeGenreCategory
 import org.sopt.at.home.component.HomeLazyRow
 import org.sopt.at.home.component.HomeMainBanner
 import org.sopt.at.home.component.HomeTopAppBar
+import org.sopt.at.home.model.HomeCategory
+import org.sopt.at.home.model.HomeCategory.Companion.toModel
 import org.sopt.at.ui.lifecycle.LaunchedEffectWithLifecycle
 import org.sopt.at.ui.scroll.ScrollHeaderAnimation
 import org.sopt.at.ui.scroll.ScrollStickyHeader
@@ -39,7 +45,14 @@ fun HomeRoute(
         }
     }
 
+    LaunchedEffect(uiState.currentCategory) {
+        viewModel.getBanner(uiState.currentCategory.toModel())
+    }
+
     HomeScreen(
+        homeBanners = uiState.banners.map { it.image },
+        currentCategory = uiState.currentCategory,
+        changeCategory = viewModel::changeCurrentCategory,
         navigateToMyPage = viewModel::navigateToMyPage
     )
 }
@@ -47,18 +60,23 @@ fun HomeRoute(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
+    homeBanners: List<Int>,
+    currentCategory: HomeCategory,
+    changeCategory: (String) -> Unit,
     navigateToMyPage: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val listState = rememberLazyListState()
+    var scrollToTop by remember { mutableStateOf(false) }
     val headerState = ScrollStickyHeader(listState)
 
-    val mainBannerImage = listOf(
-        org.sopt.at.designsystem.R.drawable.img_home_main_banner1,
-        org.sopt.at.designsystem.R.drawable.img_home_main_banner2,
-        org.sopt.at.designsystem.R.drawable.img_home_main_banner3,
-        org.sopt.at.designsystem.R.drawable.img_home_main_banner4,
-        org.sopt.at.designsystem.R.drawable.img_home_main_banner5
+    val categories = listOf(
+        "drama",
+        "entertainment",
+        "movie",
+        "sports",
+        "animation",
+        "news",
     )
 
     val mainGenreImage = listOf(
@@ -68,6 +86,13 @@ fun HomeScreen(
         org.sopt.at.designsystem.R.drawable.img_home_genre_kids,
         org.sopt.at.designsystem.R.drawable.img_home_genre_ufc
     )
+
+    LaunchedEffect(scrollToTop) {
+        if (scrollToTop) {
+            listState.animateScrollToItem(0)
+            scrollToTop = false
+        }
+    }
 
     LazyColumn(
         state = listState,
@@ -91,19 +116,44 @@ fun HomeScreen(
             }
         }
         stickyHeader {
-            HomeGenreCategory()
+            AtsoptTabRow(
+                categoryItem = categories,
+                changeCategory = { category ->
+                    changeCategory(category)
+                    if (!scrollToTop) {
+                        scrollToTop = true
+                    }
+                },
+                selectedTabIndex = when (currentCategory) {
+                    HomeCategory.DRAMA -> 0
+                    HomeCategory.ENTERTAINMENT -> 1
+                    HomeCategory.MOVIE -> 2
+                    HomeCategory.SPORTS -> 3
+                    HomeCategory.ANIMATION -> 4
+                    HomeCategory.NEWS -> 5
+                    HomeCategory.HOME -> -1
+                },
+            )
         }
         item {
             HomeMainBanner(
-                mainBanners = mainBannerImage,
-                pagerCount = 5
+                mainBanners = homeBanners,
+                pagerCount = homeBanners.size
             )
             HomeGenre(
                 mainGenre = mainGenreImage
             )
             HomeLazyRow(
-                contentImages = mainBannerImage,
-                title = "오늘의 티빙 TOP 20",
+                contentImages = homeBanners,
+                title = when (currentCategory) {
+                    HomeCategory.HOME -> "오늘의 티빙 TOP 20"
+                    HomeCategory.DRAMA -> "실시간 인기 드라마"
+                    HomeCategory.ENTERTAINMENT -> "실시간 인기 예능"
+                    HomeCategory.MOVIE -> "실시간 인기 영화"
+                    HomeCategory.SPORTS -> "2025 KBO 리그 중계"
+                    HomeCategory.ANIMATION -> "실시간 인기 애니메이션"
+                    HomeCategory.NEWS -> "24시간 보도 채널 ON-AIR"
+                },
                 itemSpacedBy = 12.dp,
                 suffix = { index ->
                     Text(
@@ -115,8 +165,16 @@ fun HomeScreen(
                 }
             )
             HomeLazyRow(
-                contentImages = mainBannerImage,
-                title = "지금 방영 중인 콘텐츠",
+                contentImages = homeBanners,
+                title = when (currentCategory) {
+                    HomeCategory.HOME -> "지금 방영 중인 콘텐츠"
+                    HomeCategory.DRAMA -> "오직 티빙에서"
+                    HomeCategory.ENTERTAINMENT -> "예능 시리즈"
+                    HomeCategory.MOVIE -> "추천 급상승 영화"
+                    HomeCategory.SPORTS -> "KBO 하이라이트"
+                    HomeCategory.ANIMATION -> "일상의 즐거움"
+                    HomeCategory.NEWS -> "정치/시사"
+                },
                 itemSpacedBy = 16.dp
             )
         }

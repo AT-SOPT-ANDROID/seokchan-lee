@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
@@ -29,7 +30,9 @@ fun HomeLazyRow(
     suffix: (@Composable (Int) -> Unit)? = null
 ) {
     Column(
-        modifier = modifier.padding(horizontal = 8.dp, vertical = 25.dp)
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp, vertical = 25.dp)
     ) {
         Text(
             text = title,
