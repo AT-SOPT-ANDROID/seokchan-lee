@@ -1,29 +1,19 @@
 package org.sopt.at.history.model
 
-enum class HistoryCategory {
-    VIEW_HISTORY,
-    PURCHASE_HISTORY,
-    FAVORITE_SERIES,
-    FAVORITE_MOVIE
+enum class HistoryCategory(val index: Int, val text: String) {
+    VIEW_HISTORY(0, "view_history"),
+    PURCHASE_HISTORY(1, "purchase_history"),
+    FAVORITE_SERIES(2, "favorite_series"),
+    FAVORITE_MOVIE(3, "favorite_movie")
     ;
 
     companion object {
-        fun HistoryCategory.toModel(): String {
-            return when (this) {
-                VIEW_HISTORY -> "view_history"
-                PURCHASE_HISTORY -> "purchase_history"
-                FAVORITE_SERIES -> "favorite_series"
-                FAVORITE_MOVIE -> "favorite_movie"
-            }
+        fun toHistoryCategory(text: String): HistoryCategory {
+            return entries.first { it.text == text }
         }
 
-        fun String.toCategory(): HistoryCategory {
-            return when (this) {
-                "purchase_history" -> PURCHASE_HISTORY
-                "favorite_series" -> FAVORITE_SERIES
-                "favorite_movie" -> FAVORITE_MOVIE
-                else -> VIEW_HISTORY
-            }
+        fun toHistoryCategory(index: Int): HistoryCategory {
+            return entries.first { it.index == index }
         }
     }
 }

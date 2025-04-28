@@ -23,7 +23,7 @@ import org.sopt.at.designsystem.component.textfield.AtsoptBasicTextField
 import org.sopt.at.history.component.HistoryPage
 import org.sopt.at.history.model.FavoriteDialogState
 import org.sopt.at.history.model.HistoryCategory
-import org.sopt.at.history.model.HistoryCategory.Companion.toModel
+import org.sopt.at.history.model.HistoryCategory.Companion.toHistoryCategory
 import org.sopt.at.model.BannerInfo
 
 @Composable
@@ -52,7 +52,7 @@ fun HistoryRoute(
                 content = "입력",
                 cancelButtonText = "취소",
                 successButtonText = "확인",
-                onClick = { viewModel.setFavoriteBanner(isFavorite = false) },
+                onSuccessClick = { viewModel.setFavoriteBanner(isFavorite = false) },
                 onCancelClick = { viewModel.showFavoriteDialog(FavoriteDialogState.UnShown) }
             )
 
@@ -62,7 +62,7 @@ fun HistoryRoute(
                 content = "입력",
                 cancelButtonText = "취소",
                 successButtonText = "확인",
-                onClick = { viewModel.setFavoriteBanner(isFavorite = true) },
+                onSuccessClick = { viewModel.setFavoriteBanner(isFavorite = true) },
                 onCancelClick = { viewModel.showFavoriteDialog(FavoriteDialogState.UnShown) },
                 value = uiState.inputFavoriteTitle,
                 onValueChange = viewModel::updateInputFavoriteTitle,
@@ -99,29 +99,16 @@ fun HistoryScreen(
 
     LaunchedEffect(currentCategory) {
         coroutineScope.launch {
-            val page = when (currentCategory) {
-                HistoryCategory.VIEW_HISTORY -> 0
-                HistoryCategory.PURCHASE_HISTORY -> 1
-                HistoryCategory.FAVORITE_SERIES -> 2
-                HistoryCategory.FAVORITE_MOVIE -> 3
-            }
-            if (pagerState.currentPage != page) {
-                pagerState.animateScrollToPage(page)
+            if (pagerState.currentPage != currentCategory.index) {
+                pagerState.animateScrollToPage(currentCategory.index)
             }
         }
     }
 
     LaunchedEffect(pagerState.currentPage) {
-        val categoryFromPage = when (pagerState.currentPage) {
-            0 -> HistoryCategory.VIEW_HISTORY
-            1 -> HistoryCategory.PURCHASE_HISTORY
-            2 -> HistoryCategory.FAVORITE_SERIES
-            3 -> HistoryCategory.FAVORITE_MOVIE
-            else -> return@LaunchedEffect
-        }
-
+        val categoryFromPage = toHistoryCategory(pagerState.currentPage)
         if (currentCategory != categoryFromPage) {
-            changeCurrentCategory(categoryFromPage.toModel())
+            changeCurrentCategory(categoryFromPage.text)
         }
     }
 
@@ -134,16 +121,11 @@ fun HistoryScreen(
             AtsoptTabRow(
                 categoryItem = categories,
                 changeCategory = { title ->
-                    if (currentCategory.toModel() != title) {
+                    if (currentCategory.text != title) {
                         changeCurrentCategory(title)
                     }
                 },
-                selectedTabIndex = when (currentCategory) {
-                    HistoryCategory.VIEW_HISTORY -> 0
-                    HistoryCategory.PURCHASE_HISTORY -> 1
-                    HistoryCategory.FAVORITE_SERIES -> 2
-                    HistoryCategory.FAVORITE_MOVIE -> 3
-                },
+                selectedTabIndex = currentCategory.index,
                 horizontalPadding = 10.dp
             )
             HorizontalPager(

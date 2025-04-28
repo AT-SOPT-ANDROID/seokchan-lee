@@ -6,7 +6,7 @@ import kotlinx.coroutines.launch
 import org.sopt.at.domain.usecase.GetFavoriteBannerUseCase
 import org.sopt.at.domain.usecase.PostFavoriteBannerUseCase
 import org.sopt.at.history.model.FavoriteDialogState
-import org.sopt.at.history.model.HistoryCategory.Companion.toCategory
+import org.sopt.at.history.model.HistoryCategory.Companion.toHistoryCategory
 import org.sopt.at.ui.base.BaseViewModel
 import javax.inject.Inject
 
@@ -60,7 +60,7 @@ class HistoryViewModel @Inject constructor(
     fun changeCurrentCategory(category: String) {
         intent {
             copy(
-                currentCategory = category.toCategory()
+                currentCategory = toHistoryCategory(category)
             )
         }
     }

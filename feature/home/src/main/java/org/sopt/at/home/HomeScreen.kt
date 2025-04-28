@@ -25,7 +25,6 @@ import org.sopt.at.home.component.HomeLazyRow
 import org.sopt.at.home.component.HomeMainBanner
 import org.sopt.at.home.component.HomeTopAppBar
 import org.sopt.at.home.model.HomeCategory
-import org.sopt.at.home.model.HomeCategory.Companion.toModel
 import org.sopt.at.ui.lifecycle.LaunchedEffectWithLifecycle
 import org.sopt.at.ui.scroll.ScrollHeaderAnimation
 import org.sopt.at.ui.scroll.ScrollStickyHeader
@@ -46,7 +45,7 @@ fun HomeRoute(
     }
 
     LaunchedEffect(uiState.currentCategory) {
-        viewModel.getBanner(uiState.currentCategory.toModel())
+        viewModel.getBanner(uiState.currentCategory.text)
     }
 
     HomeScreen(
@@ -124,15 +123,7 @@ fun HomeScreen(
                         scrollToTop = true
                     }
                 },
-                selectedTabIndex = when (currentCategory) {
-                    HomeCategory.DRAMA -> 0
-                    HomeCategory.ENTERTAINMENT -> 1
-                    HomeCategory.MOVIE -> 2
-                    HomeCategory.SPORTS -> 3
-                    HomeCategory.ANIMATION -> 4
-                    HomeCategory.NEWS -> 5
-                    HomeCategory.HOME -> -1
-                }
+                selectedTabIndex = currentCategory.index
             )
         }
         item {
@@ -145,15 +136,7 @@ fun HomeScreen(
             )
             HomeLazyRow(
                 contentImages = homeBanners,
-                title = when (currentCategory) {
-                    HomeCategory.HOME -> "오늘의 티빙 TOP 20"
-                    HomeCategory.DRAMA -> "실시간 인기 드라마"
-                    HomeCategory.ENTERTAINMENT -> "실시간 인기 예능"
-                    HomeCategory.MOVIE -> "실시간 인기 영화"
-                    HomeCategory.SPORTS -> "2025 KBO 리그 중계"
-                    HomeCategory.ANIMATION -> "실시간 인기 애니메이션"
-                    HomeCategory.NEWS -> "24시간 보도 채널 ON-AIR"
-                },
+                title = currentCategory.rankingTitle,
                 itemSpacedBy = 12.dp,
                 suffix = { index ->
                     Text(
@@ -166,15 +149,7 @@ fun HomeScreen(
             )
             HomeLazyRow(
                 contentImages = homeBanners,
-                title = when (currentCategory) {
-                    HomeCategory.HOME -> "지금 방영 중인 콘텐츠"
-                    HomeCategory.DRAMA -> "오직 티빙에서"
-                    HomeCategory.ENTERTAINMENT -> "예능 시리즈"
-                    HomeCategory.MOVIE -> "추천 급상승 영화"
-                    HomeCategory.SPORTS -> "KBO 하이라이트"
-                    HomeCategory.ANIMATION -> "일상의 즐거움"
-                    HomeCategory.NEWS -> "정치/시사"
-                },
+                title = currentCategory.subtitle,
                 itemSpacedBy = 16.dp
             )
         }

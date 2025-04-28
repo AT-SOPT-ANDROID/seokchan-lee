@@ -7,8 +7,7 @@ import org.sopt.at.domain.usecase.GetBannerUseCase
 import org.sopt.at.domain.usecase.PostBannerUseCase
 import org.sopt.at.domain.usecase.SetAutoSignInUseCase
 import org.sopt.at.home.model.HomeCategory
-import org.sopt.at.home.model.HomeCategory.Companion.toCategory
-import org.sopt.at.home.model.HomeCategory.Companion.toModel
+import org.sopt.at.home.model.HomeCategory.Companion.toHomeCategory
 import org.sopt.at.model.MockBannerData
 import org.sopt.at.ui.base.BaseViewModel
 import javax.inject.Inject
@@ -22,7 +21,7 @@ class HomeViewModel @Inject constructor(
 
     init {
         setAutoSignIn()
-        getBanner(HomeCategory.HOME.toModel())
+        getBanner(HomeCategory.HOME.text)
     }
 
     private fun setAutoSignIn() {
@@ -34,7 +33,7 @@ class HomeViewModel @Inject constructor(
     fun changeCurrentCategory(category: String) {
         intent {
             copy(
-                currentCategory = category.toCategory()
+                currentCategory = toHomeCategory(category)
             )
         }
     }
