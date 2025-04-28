@@ -29,7 +29,7 @@ fun AtsoptBasicDialog(
     content: String,
     cancelButtonText: String,
     successButtonText: String,
-    onClick: () -> Unit,
+    onSuccessClick: () -> Unit,
     onCancelClick: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape = RoundedCornerShape(6.dp),
@@ -83,7 +83,7 @@ fun AtsoptBasicDialog(
                         backgroundColor = AtsoptTheme.colors.lightGray,
                         modifier = Modifier
                             .clickableWithoutRipple {
-                                onClick()
+                                onSuccessClick()
                                 onCancelClick(false)
                             }
                             .weight(1f)

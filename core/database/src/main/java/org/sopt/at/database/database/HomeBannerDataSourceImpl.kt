@@ -14,10 +14,11 @@ class HomeBannerDataSourceImpl @Inject constructor(private val context: Context)
 
     override fun insertBanner(category: String, title: String, image: String): Boolean {
         val database = this.writableDatabase
-        val values = ContentValues()
-        values.put("category", category)
-        values.put("title", title)
-        values.put("image", image)
+        val values = ContentValues().apply {
+            put("category", category)
+            put("title", title)
+            put("image", image)
+        }
         return database.insert("banner_info", null, values) != -1L
     }
 
