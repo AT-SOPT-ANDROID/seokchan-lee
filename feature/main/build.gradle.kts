@@ -10,4 +10,9 @@ dependencies {
     implementation(projects.feature.login)
     implementation(projects.feature.signup)
     implementation(projects.feature.home)
+    implementation(projects.feature.shorts)
+    implementation(projects.feature.live)
+    implementation(projects.feature.search)
+    implementation(projects.feature.history)
+    implementation(projects.feature.mypage)
 }
