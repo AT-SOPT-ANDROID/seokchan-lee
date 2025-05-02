@@ -1,6 +1,7 @@
 package org.sopt.at.designsystem.theme
 
 import AtsoptTypography
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -82,6 +83,34 @@ fun AtsoptColor(
     homeGenre2
 )
 
+fun AtsoptDarkColor(
+    white: Color = Black,
+    black: Color = White,
+    placeholder: Color = Placeholder,
+    textFieldBackground: Color = TextFieldBackground,
+    textFieldBorder: Color = TextFieldBorder,
+    buttonText: Color = ButtonText,
+    buttonSuccess: Color = ButtonSuccess,
+    buttonBackground: Color = ButtonBackground,
+    lightGray: Color = LightGray,
+    description: Color = Description,
+    homeGenre1: Color = HomeGenre1,
+    homeGenre2: Color = HomeGenre2
+) = AtsoptColors(
+    white,
+    black,
+    placeholder,
+    textFieldBackground,
+    textFieldBorder,
+    buttonText,
+    buttonSuccess,
+    buttonBackground,
+    lightGray,
+    description,
+    homeGenre1,
+    homeGenre2
+)
+
 private val LocalAtsoptColors =
     staticCompositionLocalOf<AtsoptColors> { error("provide none color") }
 
@@ -117,8 +146,8 @@ fun provideColorsAndTypography(
 }
 
 @Composable
-fun FestimateTheme(content: @Composable () -> Unit) {
-    val colors = AtsoptColor()
+fun AtsoptTheme(content: @Composable () -> Unit) {
+    val colors = if (isSystemInDarkTheme()) AtsoptDarkColor() else AtsoptColor()
     val typography = AtsoptTypography()
     provideColorsAndTypography(colors, typography) {
         MaterialTheme(content = content)
