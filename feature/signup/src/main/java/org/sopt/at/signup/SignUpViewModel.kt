@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.sopt.at.domain.usecase.PostSignUpUseCase
-import org.sopt.at.model.UserInfo
+import org.sopt.at.model.SignUpInfo
 import org.sopt.at.ui.base.BaseViewModel
 import javax.inject.Inject
 
@@ -32,13 +32,17 @@ class SignUpViewModel @Inject constructor(
 
     fun navigateToBack() {
         viewModelScope.launch {
-            postSignUpUseCase(UserInfo(uiState.value.inputId, uiState.value.inputPassword))
-                .onSuccess {
-                    postSideEffect(SignUpSideEffect.NavigateToBack)
-                }
-                .onFailure {
-                    // TODO. 회원가입 실패
-                }
+            postSignUpUseCase(
+                SignUpInfo(
+                    loginId = uiState.value.inputId,
+                    password = uiState.value.inputPassword,
+                    nickname = uiState.value.inputId
+                )
+            ).onSuccess {
+                postSideEffect(SignUpSideEffect.NavigateToBack)
+            }.onFailure {
+                // TODO. 회원가입 실패
+            }
         }
     }
 }
