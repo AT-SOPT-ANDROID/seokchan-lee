@@ -1,8 +1,7 @@
 package org.sopt.at.data.local.repository
 
-import android.util.Log
-import org.sopt.at.data.local.model.request.RequestSignInDto
-import org.sopt.at.data.local.model.request.RequestSignUpDto
+import org.sopt.at.data.local.model.request.SignInRequestDto
+import org.sopt.at.data.local.model.request.SignUpRequestDto
 import org.sopt.at.data.local.remote.AtsoptApi
 import org.sopt.at.domain.repository.AtsoptRepository
 import org.sopt.at.model.SignInInfo
@@ -16,7 +15,7 @@ class AtsoptRepositoryImpl @Inject constructor(
     override suspend fun postSignUp(singUpInfo: SignUpInfo): Result<SignUpResult> =
         runCatching {
             atsoptApi.postSignUp(
-                RequestSignUpDto(
+                SignUpRequestDto(
                     loginId = singUpInfo.loginId,
                     password = singUpInfo.password,
                     nickname = singUpInfo.nickname,
@@ -29,10 +28,17 @@ class AtsoptRepositoryImpl @Inject constructor(
     override suspend fun postSignIn(signInInfo: SignInInfo): Result<Long> =
         runCatching {
             atsoptApi.postSignIn(
-                RequestSignInDto(
+                SignInRequestDto(
                     loginId = signInInfo.loginId,
                     password = signInInfo.password
                 )
             ).data.userId
+        }
+
+    override suspend fun getMyNickname(userId: Long): Result<String> =
+        runCatching {
+            atsoptApi.getMyNickname(
+                userId = userId
+            ).data.nickname
         }
 }
