@@ -1,11 +1,13 @@
 package org.sopt.at.domain.usecase
 
-import org.sopt.at.domain.repository.UserRepository
-import org.sopt.at.model.UserInfo
+import org.sopt.at.domain.repository.AtsoptRepository
+import org.sopt.at.model.SignUpInfo
+import org.sopt.at.model.SignUpResult
 import javax.inject.Inject
 
 class PostSignUpUseCase @Inject constructor(
-    private val userRepository: UserRepository
+    private val atsoptRepository: AtsoptRepository
 ) {
-    suspend operator fun invoke(userInfo: UserInfo): Result<Boolean> = userRepository.insertUser(userInfo)
+    suspend operator fun invoke(singUpInfo: SignUpInfo): Result<SignUpResult> =
+        atsoptRepository.postSignUp(singUpInfo)
 }

@@ -5,4 +5,6 @@ import kotlinx.coroutines.flow.Flow
 interface AutoSignInRepository {
     val autoLogin: Result<Flow<Boolean>>
     suspend fun setAutoLogin(autoLogin: Boolean)
+    val userToken: Result<Flow<Long>>
+    suspend fun setUserToken(userToken: Long)
 }

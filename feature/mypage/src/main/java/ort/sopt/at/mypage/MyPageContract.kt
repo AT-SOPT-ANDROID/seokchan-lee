@@ -4,7 +4,7 @@ import org.sopt.at.ui.base.SideEffect
 import org.sopt.at.ui.base.UiState
 
 data class MyPageState(
-    val d: String = ""
+    val nickname: String = ""
 ) : UiState
 
 sealed interface MyPageSideEffect : SideEffect {
