@@ -22,9 +22,7 @@ class SearchViewModel @Inject constructor(
                 .debounce(300)
                 .distinctUntilChanged()
                 .collect { keyword ->
-                    if (keyword.isNotEmpty()) {
-                        searchUserNickname(keyword)
-                    }
+                    searchUserNickname(keyword)
                 }
         }
     }
