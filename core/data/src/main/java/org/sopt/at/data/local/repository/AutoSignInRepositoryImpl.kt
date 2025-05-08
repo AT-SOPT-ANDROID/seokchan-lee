@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class AutoSignInRepositoryImpl @Inject constructor(
     private val autoSignInPreferencesDataSource: AutoSignInPreferencesDataSource,
-    private val userTokenPreferencesDataSource: UserTokenPreferencesDataSource,
+    private val userTokenPreferencesDataSource: UserTokenPreferencesDataSource
 ) : AutoSignInRepository {
 
     override val autoLogin: Result<Flow<Boolean>> =

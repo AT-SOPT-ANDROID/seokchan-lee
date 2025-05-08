@@ -11,7 +11,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class DefaultUserTokenPreferencesDataSource @Inject constructor(
-    @Named("tokenDataStore") private val dataStore: DataStore<Preferences>,
+    @Named("tokenDataStore") private val dataStore: DataStore<Preferences>
 ) : UserTokenPreferencesDataSource {
 
     override val userToken: Flow<Long> = dataStore.data.map { preferences ->
@@ -23,7 +23,6 @@ class DefaultUserTokenPreferencesDataSource @Inject constructor(
             preferences[PreferencesKey.USER_TOKEN] = userToken
         }
     }
-
 
     object PreferencesKey {
         val USER_TOKEN = longPreferencesKey("USER_TOKEN")

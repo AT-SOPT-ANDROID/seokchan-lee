@@ -14,7 +14,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val postSignInUseCase: PostSignInUseCase,
     private val getAutoSignInUseCase: GetAutoSignInUseCase,
-    private val setUserTokenUseCase: SetUserTokenUseCase,
+    private val setUserTokenUseCase: SetUserTokenUseCase
 ) :
     BaseViewModel<LoginState, LoginSideEffect>(LoginState()) {
     init {

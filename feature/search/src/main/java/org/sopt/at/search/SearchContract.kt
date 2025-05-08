@@ -9,5 +9,4 @@ data class SearchState(
     val userNickname: List<String> = immutableListOf()
 ) : UiState
 
-sealed interface SearchSideEffect : SideEffect {
-}
+sealed interface SearchSideEffect : SideEffect

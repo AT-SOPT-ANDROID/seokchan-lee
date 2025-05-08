@@ -63,8 +63,6 @@ object DataStoreModule {
         return context.createDataStore(TOKEN_PREFERENCES)
     }
 
-
     private const val AUTH_PREFERENCES = "org.sopt.at.auth_preferences"
     private const val TOKEN_PREFERENCES = "org.sopt.at.token_preferences"
-
 }

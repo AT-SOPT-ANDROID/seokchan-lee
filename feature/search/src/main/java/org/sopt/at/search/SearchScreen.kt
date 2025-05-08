@@ -35,7 +35,7 @@ fun SearchRoute(
     SearchScreen(
         inputKeyword = uiState.keyword,
         userNickname = uiState.userNickname,
-        updateSearchKeyword = viewModel::updateSearchKeyword,
+        updateSearchKeyword = viewModel::updateSearchKeyword
     )
 }
 
@@ -43,7 +43,7 @@ fun SearchRoute(
 fun SearchScreen(
     inputKeyword: String,
     userNickname: List<String>,
-    updateSearchKeyword: (String) -> Unit,
+    updateSearchKeyword: (String) -> Unit
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,

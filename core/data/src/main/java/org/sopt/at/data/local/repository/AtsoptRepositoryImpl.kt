@@ -18,7 +18,7 @@ class AtsoptRepositoryImpl @Inject constructor(
                 SignUpRequestDto(
                     loginId = singUpInfo.loginId,
                     password = singUpInfo.password,
-                    nickname = singUpInfo.nickname,
+                    nickname = singUpInfo.nickname
                 )
             ).data
         }.mapCatching {

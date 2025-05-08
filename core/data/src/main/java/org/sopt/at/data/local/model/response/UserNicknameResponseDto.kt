@@ -8,5 +8,3 @@ data class UserNicknameResponseDto(
     @SerialName("nicknameList")
     val nicknameList: List<String>
 )
-
-
