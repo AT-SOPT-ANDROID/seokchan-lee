@@ -41,4 +41,9 @@ class AtsoptRepositoryImpl @Inject constructor(
                 userId = userId
             ).data.nickname
         }
+
+    override suspend fun getUserNickname(keyword: String): Result<List<String>> =
+        runCatching {
+            atsoptApi.getUserNickname(keyword = keyword).data.nicknameList
+        }
 }
