@@ -20,7 +20,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import dagger.hilt.android.AndroidEntryPoint
-import org.sopt.at.designsystem.theme.FestimateTheme
+import org.sopt.at.designsystem.theme.AtsoptTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
 
         enableEdgeToEdge()
         setContent {
-            FestimateTheme {
+            AtsoptTheme {
                 val isDarkTheme = isSystemInDarkTheme()
                 val view = LocalView.current
                 if (!isDarkTheme) {
