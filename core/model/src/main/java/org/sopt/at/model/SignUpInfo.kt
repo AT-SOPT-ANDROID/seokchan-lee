@@ -7,6 +7,6 @@ data class SignUpInfo(
 )
 
 data class SignUpResult(
-    val userId: String,
+    val userId: Long,
     val nickname: String,
 )

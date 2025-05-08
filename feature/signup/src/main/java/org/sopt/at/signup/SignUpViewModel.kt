@@ -1,5 +1,6 @@
 package org.sopt.at.signup
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -40,8 +41,10 @@ class SignUpViewModel @Inject constructor(
                 )
             ).onSuccess {
                 postSideEffect(SignUpSideEffect.NavigateToBack)
+                Log.d("asdasdasd", "success")
             }.onFailure {
                 // TODO. 회원가입 실패
+                Log.d("asdasdasd", "fail")
             }
         }
     }

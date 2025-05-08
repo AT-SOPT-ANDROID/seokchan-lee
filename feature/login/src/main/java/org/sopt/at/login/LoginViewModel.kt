@@ -4,15 +4,17 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.sopt.at.domain.usecase.GetAutoSignInUseCase
-import org.sopt.at.domain.usecase.GetSignInUseCase
-import org.sopt.at.model.UserInfo
+import org.sopt.at.domain.usecase.PostSignInUseCase
+import org.sopt.at.domain.usecase.SetUserTokenUseCase
+import org.sopt.at.model.SignInInfo
 import org.sopt.at.ui.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val getSignInUseCase: GetSignInUseCase,
-    private val getAutoSignInUseCase: GetAutoSignInUseCase
+    private val postSignInUseCase: PostSignInUseCase,
+    private val getAutoSignInUseCase: GetAutoSignInUseCase,
+    private val setUserTokenUseCase: SetUserTokenUseCase,
 ) :
     BaseViewModel<LoginState, LoginSideEffect>(LoginState()) {
     init {
@@ -51,13 +53,13 @@ class LoginViewModel @Inject constructor(
 
     fun navigateToHome() {
         viewModelScope.launch {
-            getSignInUseCase(UserInfo(uiState.value.id, uiState.value.password))
-                .onSuccess { signInSuccess ->
-                    if (signInSuccess) {
+            postSignInUseCase(SignInInfo(uiState.value.id, uiState.value.password))
+                .onSuccess {
+                    setUserTokenUseCase(it).also {
                         postSideEffect(LoginSideEffect.NavigateHome)
-                    } else {
-                        postSideEffect(LoginSideEffect.SignInFailure)
                     }
+                }.onFailure {
+                    postSideEffect(LoginSideEffect.SignInFailure)
                 }
         }
     }

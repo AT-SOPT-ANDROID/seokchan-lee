@@ -15,7 +15,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import org.sopt.at.datastore.datastore.DefaultAutoSignInPreferencesDataSource
+import org.sopt.at.datastore.datastore.DefaultUserTokenPreferencesDataSource
 import org.sopt.at.datastore.source.AutoSignInPreferencesDataSource
+import org.sopt.at.datastore.source.UserTokenPreferencesDataSource
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -27,6 +29,11 @@ internal abstract class DataModule {
     abstract fun bindsAutoSignInLocalDataSource(
         dataSource: DefaultAutoSignInPreferencesDataSource
     ): AutoSignInPreferencesDataSource
+
+    @Binds
+    abstract fun bindsUserTokenLocalDataSource(
+        dataSource: DefaultUserTokenPreferencesDataSource
+    ): UserTokenPreferencesDataSource
 }
 
 @Module
@@ -45,9 +52,19 @@ object DataStoreModule {
     @Singleton
     @Provides
     @Named("authDataStore")
-    fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
+    fun provideAuthDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
         return context.createDataStore(AUTH_PREFERENCES)
     }
 
+    @Singleton
+    @Provides
+    @Named("tokenDataStore")
+    fun provideTokenDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
+        return context.createDataStore(TOKEN_PREFERENCES)
+    }
+
+
     private const val AUTH_PREFERENCES = "org.sopt.at.auth_preferences"
+    private const val TOKEN_PREFERENCES = "org.sopt.at.token_preferences"
+
 }

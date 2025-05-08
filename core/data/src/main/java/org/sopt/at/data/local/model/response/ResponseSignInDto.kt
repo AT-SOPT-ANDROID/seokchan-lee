@@ -4,9 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseSignUpDto(
+data class ResponseSignInDto(
     @SerialName("userId")
-    val userId: Long,
-    @SerialName("nickname")
-    val nickname: String,
+    val userId: Long
 )
